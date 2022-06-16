@@ -2,6 +2,12 @@ import * as Hapi from "@hapi/hapi";
 import baseRoute from "./baseRoute";
 import regRoutes from "./reg/regRoutes";
 import usersRoutes from "./users/usersRoutes";
+import mgmtexpRoutes from "./mgmtexp/mgmtexpRoutes";
+import imgexpRoutes from "./imgexp/imgexpRoutes";
+import payrollexpenseRoutes from "./payrollexpense/payrollexpenseRoutes";
+import timesheetRoutes from "./timesheet/timesheetRoutes";
+import empdataRoutes from "./empdata/empdataRoutes";
+import empexpRoutes from "./empexp/empexpRoutes";
 import * as HapiSwagger from "../node_modules/hapi-swagger";
 import * as Inert from "@hapi/inert";
 import * as Vision from "@hapi/vision";
@@ -67,7 +73,16 @@ class App {
         // register routes
         await this.theApp.register([
             baseRoute,
-            regRoutes
+            regRoutes,
+            mgmtexpRoutes,
+            usersRoutes,
+            imgexpRoutes,
+            payrollexpenseRoutes,
+            timesheetRoutes,
+            empdataRoutes,
+            empexpRoutes
+        
+    
 
         ], { once: true }).then(async () => {
             console.log("Route(s) have been registered");

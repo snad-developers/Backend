@@ -47,3 +47,123 @@ model reg {
        
 
     }
+
+model mgmtexp {
+    mgmtempid         BigInt  @db.BigInt
+    org               String  @db.VarChar
+    typeofexp         String  @db.VarChar
+    expdate           String  @db.VarChar
+    amt               BigInt  @db.BigInt
+    approvedby        BigInt  @db.BigInt
+    approvaldate      String  @db.VarChar
+    modeofpayment     String  @db.VarChar
+    paymentdate       String  @db.VarChar
+    creationdate      String  @db.VarChar
+    createdby         BigInt  @db.BigInt 
+    id                Int    @id @default(autoincrement())
+}
+
+model imgexp {
+    mgmtempid         BigInt  @db.BigInt
+    org               String  @db.VarChar
+    typeofexp         String  @db.VarChar
+    expdate           String  @db.VarChar
+    amt               BigInt  @db.BigInt
+    approvedby        BigInt  @db.BigInt
+    approvaldate      String  @db.VarChar
+    modeofpayment     String  @db.VarChar
+    paymentdate       String  @db.VarChar
+    creationdate      String  @db.VarChar
+    createdby         BigInt  @db.BigInt
+    updatedby         BigInt  @db.BigInt 
+    id                Int    @id @default(autoincrement())
+}
+
+
+
+model payrollexpense {
+
+   employeeid          BigInt   @db.BigInt
+   payperiodstartdate  String   @db.VarChar 
+    payperiodenddate   String   @db.VarChar
+    paymentdate        String    @db.VarChar
+    noofhours          BigInt    @db.BigInt
+    payrate            BigInt    @db.BigInt
+    grosspay           BigInt    @db.BigInt
+    payrollexpense     BigInt   @db.BigInt
+    insurancebycompany BigInt   @db.BigInt
+    totalpayroll       BigInt    @db.BigInt
+    creatioddate       String   @db.VarChar
+    createdby         BigInt    @db.BigInt
+    updatedby         BigInt    @db.BigInt
+    updateddate       String    @db.VarChar
+ id          Int    @id @default(autoincrement())
+}
+model timesheet {
+  employeeid     BigInt   @db.BigInt
+    period       String    @db.VarChar
+    clientid     BigInt   @db.BigInt 
+    noofhours    BigInt   @db.BigInt
+    payrate      BigInt   @db.BigInt
+    revenuarate  BigInt   @db.BigInt
+    creationdate String   @db.VarChar
+    operatonalcost BigInt @db.BigInt
+    receivables  BigInt   @db.BigInt
+    ReceivablesPaid String @db.VarChar
+    createdby    BigInt   @db.BigInt
+    updatedby    BigInt   @db.BigInt
+    updateddate  String   @db.VarChar
+ id          Int    @id @default(autoincrement())
+}
+
+
+model empdata {
+    id                      Int    @id @default(autoincrement())
+    employeenumber          String @db.VarChar
+    employeefirstName       String @db.VarChar
+    employeelastName        String @db.VarChar
+    employeefullname        String @db.VarChar
+    empstatus               String @db.VarChar
+    emailaddress            String @db.VarChar
+    jobtitle                String @db.VarChar
+    internalstaff           String @db.VarChar
+    supervisor              String @db.VarChar
+    visastatus              String @db.VarChar
+    gender                  String @db.VarChar
+    team                    String @db.VarChar
+    dateofbirth             String @db.VarChar
+    clientname              String @db.VarChar
+    clientcode              String @db.VarChar
+    startdate               String @db.VarChar
+    createdby               String @db.VarChar
+    updatedby               String @db.VarChar
+    imigrationstatus        String @db.VarChar
+    highestdegree           String @db.VarChar
+    university              String @db.VarChar
+    organization            String @db.VarChar
+    fieldofwork             String @db.VarChar
+    contactnumber           String @db.VarChar
+    }
+
+
+    
+model empexp{
+  
+  employeeid              BigInt @db.BigInt
+  entity                  String @db.VarChar
+  startdate               String @db.VarChar
+  enddate                 String @db.VarChar
+  expensecode             String @db.VarChar
+  expensedate             String @db.VarChar
+  clientcode              BigInt @db.BigInt
+  amount                  BigInt @db.BigInt
+  approvedby              BigInt @db.BigInt
+  approvaldate            String @db.VarChar
+  modeofpayment           String @db.VarChar
+  paymentdate             String @db.VarChar
+  creationdate            String @db.VarChar
+  createdby               BigInt @db.BigInt
+  updatedby               BigInt @db.BigInt
+  id                      Int    @id @default(autoincrement())
+    
+}    

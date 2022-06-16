@@ -1,0 +1,13 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 27000,
+            "askForPassword": true,
+            "driver": "AWS Redshift",
+            "connectString": "mongodb://govardhanmgr:123456789@docdb-2022-06-15-19-42-43.cwgp0qqflxbz.ap-south-1.docdb.amazonaws.com:27017/?ssl=true&ssl_ca_certs=rds-combined-ca-bundle.pem&retryWrites=false",
+            "name": "mongo"
+        }
+    ]
+}
