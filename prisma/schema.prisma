@@ -3,7 +3,7 @@
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url      = "postgresql://dngvsgtb:T2voTMcgHP4_Brofpk5qPvgi_pM6z2Nl@satao.db.elephantsql.com:5432/dngvsgtb"
 }
 
 generator client {
