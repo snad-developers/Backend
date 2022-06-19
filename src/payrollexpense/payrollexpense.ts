@@ -2,55 +2,55 @@ import { CharacterEncoding } from "crypto";
 
 export interface payrollexpense {
     
-    employeeid: bigint;
+    employeeid: number;
    payperiodstartdate : string;
     payperiodenddate: string;
     paymentdate: string;
-    noofhours: bigint;
-    payrate: bigint;
-    grosspay:bigint;
-    payrollexpense:bigint;
-    insurancebycompany:bigint;
-    totalpayroll:bigint;
+    noofhours: number;
+    payrate: number;
+    grosspay:number;
+    payrollexpense:number;
+    insurancebycompany:number;
+    totalpayroll:number;
     creatioddate:string;
-    createdby:bigint;
-    updatedby:bigint;
+    createdby:number;
+    updatedby:number;
     updateddate:string;
 
 }
 export interface Createpayrollexpense {
     
-    employeeid: bigint;
+    employeeid: number;
     payperiodstartdate : string;
      payperiodenddate: string;
      paymentdate: string;
-     noofhours: bigint;
-     payrate: bigint;
-     grosspay:bigint;
-     payrollexpense:bigint;
-     insurancebycompany:bigint;
-     totalpayroll:bigint;
+     noofhours: number;
+     payrate: number;
+     grosspay:number;
+     payrollexpense:number;
+     insurancebycompany:number;
+     totalpayroll:number;
      creatioddate:string;
-     createdby:bigint;
-     updatedby:bigint;
+     createdby:number;
+     updatedby:number;
      updateddate:string;
 }
 
 export interface Updatepayrollexpense {
    
-    employeeid?: bigint;
+    employeeid?: number;
    payperiodstartdate? : string;
     payperiodenddate?: string;
     paymentdate?: string;
-    noofhours?: bigint;
-    payrate?: bigint;
-    grosspay?:bigint;
-    payrollexpense?:bigint;
-    insurancebycompany?:bigint;
-    totalpayroll?:bigint;
+    noofhours?: number;
+    payrate?: number;
+    grosspay?:number;
+    payrollexpense?:number;
+    insurancebycompany?:number;
+    totalpayroll?:number;
     creatioddate?:string;
-    createdby?:bigint;
-    updatedby?:bigint;
+    createdby?:number;
+    updatedby?:number;
     updateddate?:string;
 
 }

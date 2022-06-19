@@ -1,56 +1,56 @@
 export interface empexp{
-    employeeid: bigint;
+    employeeid: number;
     entity: string;
     startdate: string;
     enddate: string;
     expensecode: string;
     expensedate: string;
-    clientcode:bigint;
-    amount:bigint;
-    approvedby:bigint;
+    clientcode:number;
+    amount:number;
+    approvedby:number;
     approvaldate:string;
     modeofpayment: string;
     paymentdate:string;
     creationdate:string;
-    createdby:bigint;
-    updatedby:bigint;
+    createdby:number;
+    updatedby:number;
     
 
 }
 export interface Createempexp {
-    employeeid: bigint;
+    employeeid: number;
     entity: string;
     startdate: string;
     enddate: string;
     expensecode: string;
     expensedate: string;
-    clientcode:bigint;
-    amount:bigint;
-    approvedby:bigint;
+    clientcode:number;
+    amount:number;
+    approvedby:number;
     approvaldate:string;
     modeofpayment: string;
     paymentdate:string;
     creationdate:string;
-    createdby:bigint;
-    updatedby:bigint;
+    createdby:number;
+    updatedby:number;
 }
 
 export interface Updateempexp {
-    employeeid?: bigint;
+    employeeid?: number;
     entity?: string;
     startdate?: string;
     enddate?: string;
     expensecode?: string;
     expensedate?: string;
-    clientcode?:bigint;
-    amount?:bigint;
-    approvedby?:bigint;
+    clientcode?:number;
+    amount?:number;
+    approvedby?:number;
     approvaldate?:string;
     modeofpayment?: string;
     paymentdate?:string;
     creationdate?:string;
-    createdby?:bigint;
-    updatedby?:bigint;
+    createdby?:number;
+    updatedby?:number;
     
     
 }

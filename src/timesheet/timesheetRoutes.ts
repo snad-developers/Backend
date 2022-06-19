@@ -11,7 +11,7 @@ const timesheetRoutes = {
         server.route([
             {
                 method: 'POST',
-                path: '/',
+                path: '/timesheet',
                 handler: controller.create,
                 options: {
                     tags: ['api']

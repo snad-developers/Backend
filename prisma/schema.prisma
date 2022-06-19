@@ -49,71 +49,71 @@ model reg {
     }
 
 model mgmtexp {
-    mgmtempid         BigInt  @db.BigInt
+    mgmtempid         Int     @db.Integer
     org               String  @db.VarChar
     typeofexp         String  @db.VarChar
     expdate           String  @db.VarChar
-    amt               BigInt  @db.BigInt
-    approvedby        BigInt  @db.BigInt
+    amt               Int     @db.Integer
+    approvedby        Int     @db.Integer
     approvaldate      String  @db.VarChar
     modeofpayment     String  @db.VarChar
     paymentdate       String  @db.VarChar
     creationdate      String  @db.VarChar
-    createdby         BigInt  @db.BigInt 
-    id                Int    @id @default(autoincrement())
+    createdby         Int     @db.Integer 
+    id                Int     @id @default(autoincrement())
 }
 
 model imgexp {
-    mgmtempid         BigInt  @db.BigInt
+    mgmtempid         Int     @db.Integer
     org               String  @db.VarChar
     typeofexp         String  @db.VarChar
     expdate           String  @db.VarChar
-    amt               BigInt  @db.BigInt
-    approvedby        BigInt  @db.BigInt
+    amt               Int     @db.Integer
+    approvedby        Int     @db.Integer
     approvaldate      String  @db.VarChar
     modeofpayment     String  @db.VarChar
     paymentdate       String  @db.VarChar
     creationdate      String  @db.VarChar
-    createdby         BigInt  @db.BigInt
-    updatedby         BigInt  @db.BigInt 
-    id                Int    @id @default(autoincrement())
+    createdby         Int     @db.Integer
+    updatedby         Int     @db.Integer
+    id                Int     @id @default(autoincrement())
 }
 
 
 
 model payrollexpense {
 
-   employeeid          BigInt   @db.BigInt
+   employeeid          Int      @db.Integer
    payperiodstartdate  String   @db.VarChar 
     payperiodenddate   String   @db.VarChar
-    paymentdate        String    @db.VarChar
-    noofhours          BigInt    @db.BigInt
-    payrate            BigInt    @db.BigInt
-    grosspay           BigInt    @db.BigInt
-    payrollexpense     BigInt   @db.BigInt
-    insurancebycompany BigInt   @db.BigInt
-    totalpayroll       BigInt    @db.BigInt
+    paymentdate        String   @db.VarChar
+    noofhours          Int      @db.Integer
+    payrate            Int      @db.Integer
+    grosspay           Int      @db.Integer
+    payrollexpense     Int      @db.Integer
+    insurancebycompany Int      @db.Integer
+    totalpayroll       Int      @db.Integer
     creatioddate       String   @db.VarChar
-    createdby         BigInt    @db.BigInt
-    updatedby         BigInt    @db.BigInt
+    createdby         Int       @db.Integer
+    updatedby         Int       @db.Integer
     updateddate       String    @db.VarChar
  id          Int    @id @default(autoincrement())
 }
 model timesheet {
-  employeeid     BigInt   @db.BigInt
-    period       String    @db.VarChar
-    clientid     BigInt   @db.BigInt 
-    noofhours    BigInt   @db.BigInt
-    payrate      BigInt   @db.BigInt
-    revenuarate  BigInt   @db.BigInt
-    creationdate String   @db.VarChar
-    operatonalcost BigInt @db.BigInt
-    receivables  BigInt   @db.BigInt
-    ReceivablesPaid String @db.VarChar
-    createdby    BigInt   @db.BigInt
-    updatedby    BigInt   @db.BigInt
-    updateddate  String   @db.VarChar
- id          Int    @id @default(autoincrement())
+    employeeid      Int       @db.Integer
+    period          String    @db.VarChar
+    clientid        Int       @db.Integer 
+    noofhours       Int       @db.Integer
+    payrate         Int       @db.Integer
+    revenuerate     Int       @db.Integer
+    creationdate    String    @db.VarChar
+    operationalcost  Int      @db.Integer
+    receivables     Int       @db.Integer
+    ReceivablesPaid String    @db.VarChar
+    createdby       Int       @db.Integer
+    updatedby       Int       @db.Integer
+    updateddate     String    @db.VarChar
+    id              Int       @id @default(autoincrement())
 }
 
 
@@ -149,21 +149,21 @@ model empdata {
     
 model empexp{
   
-  employeeid              BigInt @db.BigInt
-  entity                  String @db.VarChar
-  startdate               String @db.VarChar
-  enddate                 String @db.VarChar
-  expensecode             String @db.VarChar
-  expensedate             String @db.VarChar
-  clientcode              BigInt @db.BigInt
-  amount                  BigInt @db.BigInt
-  approvedby              BigInt @db.BigInt
-  approvaldate            String @db.VarChar
-  modeofpayment           String @db.VarChar
-  paymentdate             String @db.VarChar
-  creationdate            String @db.VarChar
-  createdby               BigInt @db.BigInt
-  updatedby               BigInt @db.BigInt
-  id                      Int    @id @default(autoincrement())
+  employeeid              Int     @db.Integer
+  entity                  String  @db.VarChar
+  startdate               String  @db.VarChar
+  enddate                 String  @db.VarChar
+  expensecode             String  @db.VarChar
+  expensedate             String  @db.VarChar
+  clientcode              Int     @db.Integer
+  amount                  Int     @db.Integer
+  approvedby              Int     @db.Integer
+  approvaldate            String  @db.VarChar
+  modeofpayment           String  @db.VarChar
+  paymentdate             String  @db.VarChar
+  creationdate            String  @db.VarChar
+  createdby               Int     @db.Integer
+  updatedby               Int     @db.Integer
+  id                      Int     @id @default(autoincrement())
     
 }    

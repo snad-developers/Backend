@@ -1,51 +1,51 @@
 export interface timesheet {
     
-    employeeid: bigint;
+    employeeid: number;
     period: string;
-    clientid: bigint;
-    noofhours: bigint;
-    payrate: bigint;
-    revenuarate: bigint;
+    clientid: number;
+    noofhours: number;
+    payrate: number;
+    revenuerate: number;
     creationdate:string;
-    operatonalcost:bigint;
-    receivables:bigint;
+    operationalcost:number;
+    receivables:number;
     ReceivablesPaid:string;
-    createdby:bigint;
-    updatedby:bigint;
+    createdby:number;
+    updatedby:number;
     updateddate:string;
 
 }
 export interface Createtimesheet {
     
-    employeeid: bigint;
+    employeeid: number;
     period: string;
-    clientid: bigint;
-    noofhours: bigint;
-    payrate: bigint;
-    revenuarate: bigint;
+    clientid: number;
+    noofhours: number;
+    payrate: number;
+    revenuerate: number;
     creationdate:string;
-    operatonalcost:bigint;
-    receivables:bigint;
+    operationalcost:number;
+    receivables:number;
     ReceivablesPaid:string;
-    createdby:bigint;
-    updatedby:bigint;
+    createdby:number;
+    updatedby:number;
     updateddate:string;
 }
 
 export interface Updatetimesheet {
    
-    employeeid?: bigint;
+    employeeid?: number;
     period?: string;
-    clientid?: bigint;
-    noofhours?: bigint;
-    payrate?: bigint;
-    revenuarate?: bigint;
+    clientid?: number;
+    noofhours?: number;
+    payrate?: number;
+    revenuerate?: number;
     creationdate?:string;
-    operatonalcost?:bigint;
-    receivables?:bigint;
+    operationalcost?:number;
+    receivables?:number;
     ReceivablesPaid?:string;
-    createdby?:bigint;
-    updatedby?:bigint;
+    createdby?:number;
+    updatedby?:number;
     updateddate?:string;
 
 }

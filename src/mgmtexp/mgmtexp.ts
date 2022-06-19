@@ -1,45 +1,45 @@
 export interface mgmtexp {
     
-    mgmtempid: bigint;
+    mgmtempid: number;
     org: string;
     typeofexp: string;
     expdate: string;
-    amt: bigint;
-    approvedby: bigint;
+    amt: number;
+    approvedby: number;
     approvaldate:string;
     modeofpayment:string;
     paymentdate:string;
     creationdate:string;
-    createdby:bigint;
+    createdby:number;
 
 }
 export interface Createmgmtexp {
     
-    mgmtempid: bigint;
+    mgmtempid: number;
     org: string;
     typeofexp: string;
     expdate: string;
-    amt: bigint;
-    approvedby: bigint;
+    amt: number;
+    approvedby: number;
     approvaldate:string;
     modeofpayment:string;
     paymentdate:string;
     creationdate:string;
-    createdby:bigint;
+    createdby:number;
 }
 
 export interface Updatemgmtexp {
    
-    mgmtempid?: bigint;
+    mgmtempid?: number;
     org?: string;
     typeofexp?: string;
     expdate?: string;
-    amt?: bigint;
-    approvedby?: bigint;
+    amt?: number;
+    approvedby?: number;
     approvaldate?:string;
     modeofpayment?:string;
     paymentdate?:string;
     creationdate?:string;
-    createdby?:bigint;
+    createdby?:number;
 
 }
