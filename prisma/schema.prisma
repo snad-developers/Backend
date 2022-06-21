@@ -166,4 +166,14 @@ model empexp{
   updatedby               Int     @db.Integer
   id                      Int     @id @default(autoincrement())
     
-}    
+}   
+model clientdata{
+  clientcode                      Int     @db.Integer
+  clientname                      String  @db.VarChar
+  taxfederal                      Int     @db.Integer
+  clientlocation                  String  @db.VarChar
+  agreementstartdate              String  @db.VarChar
+  serviceagreementonboarded       String  @db.VarChar
+  agreementenddate                String  @db.VarChar
+  id                              Int     @id @default(autoincrement())
+}  

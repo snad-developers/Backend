@@ -9,6 +9,7 @@ import timesheetRoutes from "./timesheet/timesheetRoutes";
 import empdataRoutes from "./empdata/empdataRoutes";
 import empexpRoutes from "./empexp/empexpRoutes";
 import loginRoutes from "./login/loginRoutes";
+import clientdataRoutes from "./clientdata/clientdataRoutes";
 import * as HapiSwagger from "../node_modules/hapi-swagger";
 import * as Inert from "@hapi/inert";
 import * as Vision from "@hapi/vision";
@@ -83,7 +84,8 @@ class App {
             empdataRoutes,
             empexpRoutes,
             loginRoutes,
-        
+            clientdataRoutes,
+            
     
 
         ], { once: true }).then(async () => {
