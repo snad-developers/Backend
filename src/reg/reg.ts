@@ -22,6 +22,7 @@ export interface reg {
     ans4:string;
     ans5:string;
     entity:string;
+    status:string;
 }
 export interface Createreg {
     
@@ -47,6 +48,7 @@ export interface Createreg {
     ans4:string;
     ans5:string;
     entity:string;
+    status:string;
 }
 
 export interface Updatereg {
@@ -73,4 +75,6 @@ export interface Updatereg {
     ans4?:string;
     ans5?:string;
     entity?:string;
+    status?:string;
+
 }

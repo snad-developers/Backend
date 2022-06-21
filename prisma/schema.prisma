@@ -44,7 +44,7 @@ model reg {
     ans4              String @db.VarChar 
     ans5              String @db.VarChar
     entity            String @db.VarChar
-       
+    status            String @db.VarChar       
 
     }
 
