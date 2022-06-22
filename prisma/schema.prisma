@@ -177,3 +177,8 @@ model clientdata{
   agreementenddate                String  @db.VarChar
   id                              Int     @id @default(autoincrement())
 }  
+model orgndata{
+ entity     String  @db.VarChar
+ role       String  @db.VarChar
+ id         Int     @id @default(autoincrement())
+}
