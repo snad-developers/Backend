@@ -7,6 +7,7 @@ import { timesheetService } from "../timesheet/timesheetService";
 import { payrollexpenseService } from "../payrollexpense/payrollexpenseService";
 import { empexpService } from "../empexp/empexpService";
 import { mgmtexpService } from "../mgmtexp/mgmtexpService";
+import { isCommaListExpression } from "typescript";
 
 
 export class loginController {
@@ -25,8 +26,41 @@ export class loginController {
           var  result:boolean = false;
            for (var i = 0; i < loginresult.length; i++) {
             // Exit early if one of them fails
-            if (loginresult[i].email == requestBody.email && loginresult[i].password == requestBody.password && loginresult[i].entity == requestBody.entity ) {
+            // if(loginresult[i].email !== requestBody.email){
+            //     return h.response(JSON.stringify({ status: "failure", message: "User not Registered",bodyload: requestBody ,statuscode:201}));
+                
+            // }
+
+            // if (loginresult[i].email == requestBody.email && loginresult[i].password !== requestBody.password) {
+            //     // result=true;
+            //     return h.response(JSON.stringify({ status: "failure", message: "Password is Incorrect",bodyload: requestBody ,statuscode:201}));
+            // }
+
+
+            // if (loginresult[i].email == requestBody.email && loginresult[i].password == requestBody.password && loginresult[i].entity !== requestBody.entity) {
+            //     // result=true;
+            //     return h.response(JSON.stringify({ status: "failure", message: "Please choose correct Entity",bodyload: requestBody ,statuscode:201}));
+
+            // }
+
+            // if (loginresult[i].email == requestBody.email && loginresult[i].password == requestBody.password && loginresult[i].entity == requestBody.entity && loginresult[i].status == "pending") {
+                
+            //     return h.response(JSON.stringify({ status: "failure", message: "User is Pending. Please contact Admin",bodyload: requestBody ,statuscode:201}));
+
+
+            // }
+
+            // if (loginresult[i].email == requestBody.email && loginresult[i].password == requestBody.password && loginresult[i].entity == requestBody.entity && loginresult[i].status == "Rejected") {
+                
+            //     return h.response(JSON.stringify({ status: "failure", message: "User  Rejected. Please contact Admin",bodyload: requestBody ,statuscode:201}));
+
+
+            // }
+
+
+            if (loginresult[i].email == requestBody.email && loginresult[i].password == requestBody.password && loginresult[i].entity == requestBody.entity && loginresult[i].status == "Approved") {
                result=true;
+            
                return h.response(JSON.stringify({ status: "success", message: "Valid User",bodyload: requestBody ,statuscode:200}));
             }
            
@@ -136,6 +170,26 @@ export class loginController {
 
 
     }
+
+    public async approve(request: Hapi.Request, h: Hapi.ResponseToolkit) {
+        try {
+            const requestBody: Updatereg = request.payload as Updatereg;
+            const result = await new regService().update(requestBody, requestBody.id);
+            if(result.status == requestBody.status ){
+            return h.response(JSON.stringify({ status: "success", message: "Valid User",bodyload: requestBody ,statuscode:200}));
+            }
+            
+                return h.response(JSON.stringify({ status: "failure", message: "inValid User",bodyload: requestBody ,statuscode:201}));
+            
+        } catch (error) {
+            request.log("error", error);
+            return Boom.badImplementation(JSON.stringify(error))
+        }
+
+
+    }
+
+    
 
 
     public async dashboard(request: Hapi.Request, h: Hapi.ResponseToolkit) {

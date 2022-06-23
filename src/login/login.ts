@@ -14,7 +14,7 @@ export interface forgotpassword {
     ans3:string;
     ans4:string;
     ans5:string;
-    id:string
+    id:number
    
 }
 
@@ -23,5 +23,7 @@ export interface Updatereg {
   
     password?:string;
     confirmPassword?:string;
+    status?:string;
+    id?:number;
 }
 

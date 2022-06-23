@@ -50,6 +50,14 @@ const loginRoutes = {
                     tags: ['api']
                 }
             },
+            {
+                method:'POST',
+                path:'/approve',
+                handler:controller.approve,
+                options: {
+                    tags: [ 'api' ]
+                }
+            }
            
         ]);
     }
