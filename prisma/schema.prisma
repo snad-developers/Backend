@@ -19,6 +19,35 @@ model Users {
   permissions String
 }
 
+model empdata {
+    id                      Int    @id @default(autoincrement())
+    employeenumber          String @db.VarChar
+    employeefirstName       String @db.VarChar
+    employeelastName        String @db.VarChar
+    employeefullname        String @db.VarChar
+    empstatus               String @db.VarChar
+    emailaddress            String @db.VarChar
+    jobtitle                String @db.VarChar
+    internalstaff           String @db.VarChar
+    supervisor              String @db.VarChar
+    visastatus              String @db.VarChar
+    gender                  String @db.VarChar
+    team                    String @db.VarChar
+    dateofbirth             String @db.VarChar
+    clientname              String @db.VarChar
+    clientcode              String @db.VarChar
+    startdate               String @db.VarChar
+    createdby               String @db.VarChar
+    updatedby               String @db.VarChar
+    imigrationstatus        String @db.VarChar
+    highestdegree           String @db.VarChar
+    university              String @db.VarChar
+    organization            String @db.VarChar
+    fieldofwork             String @db.VarChar
+    contactnumber           String @db.VarChar
+    payroll                 payrollexpense []
+    }
+
 model reg {
 
     id                Int    @id @default(autoincrement())
@@ -83,8 +112,8 @@ model imgexp {
 
 model payrollexpense {
 
-   employeeid          Int      @db.Integer
-   payperiodstartdate  String   @db.VarChar 
+    
+    payperiodstartdate  String   @db.VarChar 
     payperiodenddate   String   @db.VarChar
     paymentdate        String   @db.VarChar
     noofhours          Int      @db.Integer
@@ -97,8 +126,11 @@ model payrollexpense {
     createdby         Int       @db.Integer
     updatedby         Int       @db.Integer
     updateddate       String    @db.VarChar
- id          Int    @id @default(autoincrement())
+    id                 Int     @id @default(autoincrement())
+    employee          empdata  @relation(fields: [employeeid], references: [id])
+    employeeid        Int    
 }
+
 model timesheet {
     employeeid      Int       @db.Integer
     period          String    @db.VarChar
@@ -117,33 +149,7 @@ model timesheet {
 }
 
 
-model empdata {
-    id                      Int    @id @default(autoincrement())
-    employeenumber          String @db.VarChar
-    employeefirstName       String @db.VarChar
-    employeelastName        String @db.VarChar
-    employeefullname        String @db.VarChar
-    empstatus               String @db.VarChar
-    emailaddress            String @db.VarChar
-    jobtitle                String @db.VarChar
-    internalstaff           String @db.VarChar
-    supervisor              String @db.VarChar
-    visastatus              String @db.VarChar
-    gender                  String @db.VarChar
-    team                    String @db.VarChar
-    dateofbirth             String @db.VarChar
-    clientname              String @db.VarChar
-    clientcode              String @db.VarChar
-    startdate               String @db.VarChar
-    createdby               String @db.VarChar
-    updatedby               String @db.VarChar
-    imigrationstatus        String @db.VarChar
-    highestdegree           String @db.VarChar
-    university              String @db.VarChar
-    organization            String @db.VarChar
-    fieldofwork             String @db.VarChar
-    contactnumber           String @db.VarChar
-    }
+
 
 
     
