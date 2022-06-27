@@ -60,8 +60,10 @@ export class loginController {
 
             if (loginresult[i].email == requestBody.email && loginresult[i].password == requestBody.password && loginresult[i].entity == requestBody.entity && loginresult[i].status == "Approved") {
                result=true;
+            //    logid = loginresult[i].id
+               
             
-               return h.response(JSON.stringify({ status: "success", message: "Valid User",bodyload: requestBody ,statuscode:200}));
+               return h.response(JSON.stringify({ status: "success", message: "Valid User",bodyload: requestBody ,statuscode:200,logid:loginresult[i]}));
             }
            
           }

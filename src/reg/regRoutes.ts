@@ -48,7 +48,16 @@ const regRoutes = {
                 options: {
                     tags: ['api']
                 }
-            }
+            },
+
+            {
+                method: 'POST',
+                path: '/reg/{id}',
+                handler: controller.update,
+                options: {
+                    tags: ['api']
+                }
+            },
         ]);
     }
 }
