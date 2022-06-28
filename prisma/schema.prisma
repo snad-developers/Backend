@@ -185,7 +185,11 @@ model clientdata{
   id                              Int     @id @default(autoincrement())
 }  
 model orgndata{
- entity     String  @db.VarChar
- role       String  @db.VarChar
+ entity       String  @db.VarChar
+ id         Int     @id @default(autoincrement())
+}
+
+model roles{
+ roles       String  @db.VarChar
  id         Int     @id @default(autoincrement())
 }
