@@ -24,11 +24,12 @@ export class loginController {
            
            const loginresult = await new regService().getAll();
           var  result:boolean = false;
+          var errmessage = null;
            for (var i = 0; i < loginresult.length; i++) {
             // Exit early if one of them fails
             // if(loginresult[i].email !== requestBody.email){
             //     return h.response(JSON.stringify({ status: "failure", message: "User not Registered",bodyload: requestBody ,statuscode:201}));
-                
+                    
             // }
 
             // if (loginresult[i].email == requestBody.email && loginresult[i].password !== requestBody.password) {
@@ -93,25 +94,26 @@ export class loginController {
                 var count=0;
                 if (loginresult[i].id == id) {
                     //requestBody.id=loginresult[i].id;
-                    var array1 = [loginresult[i].ans1,loginresult[i].ans2,loginresult[i].ans3,loginresult[i].ans4,loginresult[i].ans5];
-                    var array2= [requestBody.ans1,requestBody.ans2,requestBody.ans3];
-                    for (var i = 0; i<array2.length; i++) {
-                        var arrlen = array1.length;
-                        for (var j = 0; j<arrlen; j++) {
-                            if (array2[i] == array1[j]) {
-                                array1 = array1.slice(0, j).concat(array1.slice(j+1, arrlen));count++;
-                            }
-                        }
-                    }
+                    var answers = [loginresult[i].ans1,loginresult[i].ans2,loginresult[i].ans3,loginresult[i].ans4,loginresult[i].ans5];
+                   // var array2= [requestBody.ans1,requestBody.ans2,requestBody.ans3];
+                   // var questions=[requestBody.question1,requestBody.question2,requestBody.question3]
+                    // for (var i = 0; i<array2.length; i++) {
+                    //     var arrlen = array1.length;
+                    //     for (var j = 0; j<arrlen; j++) {
+                    //         if (array2[i] == array1[j]) {
+                    //             array1 = array1.slice(0, j).concat(array1.slice(j+1, arrlen));count++;
+                    //         }
+                    //     }
+                    // }
                     
 
-            if(count >= 3){
-                return h.response(JSON.stringify({ status: "success", message: "Valid User",bodyload: requestBody ,statuscode:200,mailid:id}));
-            }
-            else{
-                return h.response(JSON.stringify({ status: "failure", message: "inValid User",bodyload: requestBody,
-                statuscode:201, array1:array1,array2:array2,count:count,loginresult:loginresult}));
-            }
+            // if(count >= 3){
+                return h.response(JSON.stringify({ status: "success", message: "Valid User",bodyload: requestBody ,statuscode:200,mailid:id,answers:answers}));
+            // }
+            // else{
+            //     return h.response(JSON.stringify({ status: "failure", message: "inValid User",bodyload: requestBody,
+            //     statuscode:201, array1:array1,array2:array2,count:count,loginresult:loginresult}));
+            // }
             }
           }
      
