@@ -1,6 +1,6 @@
 export interface empdata {
     
-    employeenumber: string;
+    employeenumber: number;
     employeefirstName: string;
     employeelastName: string;
     employeefullname: string;
@@ -8,7 +8,7 @@ export interface empdata {
     emailaddress: string;
     jobtitle: string;
     internalstaff: string;
-    supervisor:string;
+    supervisor:number;
     visastatus:string;
     gender:string;
     team:string;
@@ -23,11 +23,11 @@ export interface empdata {
     university:string;
     organization:string;
     fieldofwork:string;
-    contactnumber:string;
+    contactnumber:number;
 }
 export interface Createempdata {
     
-    employeenumber: string;
+    employeenumber: number;
     employeefirstName: string;
     employeelastName: string;
     employeefullname: string;
@@ -35,7 +35,7 @@ export interface Createempdata {
     emailaddress: string;
     jobtitle: string;
     internalstaff: string;
-    supervisor:string;
+    supervisor:number;
     visastatus:string;
     gender:string;
     team:string;
@@ -50,12 +50,12 @@ export interface Createempdata {
     university:string;
     organization:string;
     fieldofwork:string;
-    contactnumber:string;
+    contactnumber:number;
 }
 
 export interface Updateempdata {
    
-    employeenumber?: string;
+    employeenumber?: number;
     employeefirstName?: string;
     employeelastName?: string;
     employeefullname?: string;
@@ -63,7 +63,7 @@ export interface Updateempdata {
     emailaddress?: string;
     jobtitle?: string;
     internalstaff?: string;
-    supervisor?:string;
+    supervisor?:number;
     visastatus?:string;
     gender?:string;
     team?:string;
@@ -78,5 +78,5 @@ export interface Updateempdata {
     university?:string;
     organization?:string;
     fieldofwork?:string;
-    contactnumber?:string;
+    contactnumber?:number;
 }
