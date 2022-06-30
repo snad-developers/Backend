@@ -282,7 +282,6 @@ export class loginController {
                 data[i].sum=data[i].sum.toString();
                
             }
-            console.log(data)
             if(data){
             
             
