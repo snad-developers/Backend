@@ -278,7 +278,7 @@ export class loginController {
            
             data = await new regService().accessData();
             for (var i=0; i<data.length; i++){
-                data[i].employeeid=data[i].employeeid.toString()
+                data[i].clientid=data[i].clientid.toString()
                 data[i].sum=data[i].sum.toString();
                
             }
