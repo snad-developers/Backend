@@ -135,5 +135,23 @@ export class empdataService {
 
     }
 
+    public async getCount(): Promise<number> {
+
+        try {
+
+            const response =  await this.prisma.empdata.aggregate({_count:{ empstatus:true},where:{empstatus:'Active'}});
+            return response._count.empstatus;
+
+        } catch (error) {
+            console.log(error);
+
+        } finally {
+            await this.prisma.$disconnect();
+
+
+        }
+
+    }
+
 
 }

@@ -135,5 +135,23 @@ export class empexpService {
     }
 
 
+    public async getCount(): Promise<number> {
+
+        try {
+
+            const response =  await this.prisma.empexp.aggregate({_sum:{ amount:true}});
+            return response._sum.amount;
+
+        } catch (error) {
+            console.log(error);
+
+        } finally {
+            await this.prisma.$disconnect();
+
+
+        }
+
+    }
+
 
 }

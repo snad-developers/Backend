@@ -134,5 +134,23 @@ export class mgmtexpService {
 
     }
 
+    public async getCount(): Promise<number> {
+
+        try {
+
+            const response =  await this.prisma.mgmtexp.aggregate({_sum:{ amount:true}});
+            return response._sum.amount;
+
+        } catch (error) {
+            console.log(error);
+
+        } finally {
+            await this.prisma.$disconnect();
+
+
+        }
+
+    }
+
 
 }

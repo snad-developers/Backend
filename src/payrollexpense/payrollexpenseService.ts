@@ -137,4 +137,22 @@ export class payrollexpenseService {
 }
 
 
+    public async getCount(): Promise<number> {
+
+        try {
+
+            const response =  await this.prisma.payrollexpense.aggregate({_sum:{ payrollexpense:true}});
+            return response._sum.payrollexpense;
+
+        } catch (error) {
+            console.log(error);
+
+        } finally {
+            await this.prisma.$disconnect();
+
+
+        }
+
+    }
+
 
