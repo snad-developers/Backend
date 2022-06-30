@@ -6,6 +6,10 @@ export interface login {
    
 }
 
+export interface fileupload {   
+    FileUploadData: [];
+    filename:string;
+}
 
 export interface forgotpassword {
     email: string;

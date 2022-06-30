@@ -1,5 +1,5 @@
 import * as Hapi from "@hapi/hapi";
-import { login, forgotpassword, Updatereg} from "./login";
+import { login, forgotpassword, Updatereg,fileupload} from "./login";
 import { regService } from "../reg/regService";
 import Boom from "@hapi/boom";
 import { empdataService } from "../empdata/empdataService";
@@ -7,7 +7,8 @@ import { timesheetService } from "../timesheet/timesheetService";
 import { payrollexpenseService } from "../payrollexpense/payrollexpenseService";
 import { empexpService } from "../empexp/empexpService";
 import { mgmtexpService } from "../mgmtexp/mgmtexpService";
-import { isCommaListExpression } from "typescript";
+import { imgexpService } from "../imgexp/imgexpService";
+
 
 
 export class loginController {
@@ -237,7 +238,66 @@ export class loginController {
 
     }
 
+    public async fileupload(request: Hapi.Request, h: Hapi.ResponseToolkit) {
+        try {
+            const requestBody: fileupload = request.payload as fileupload;
+            var result:any;
+            if(requestBody.filename == "0"){
+                console.log(requestBody.filename)
+                result = await new empdataService().fileupload(requestBody.FileUploadData);
+                }
+            if(requestBody.filename == "1"){
+                console.log(requestBody.filename)
+            result = await new timesheetService().fileupload(requestBody.FileUploadData);
+            }
+            if(requestBody.filename == "2"){
+                console.log(requestBody.filename)
+            result = await new imgexpService().fileupload(requestBody.FileUploadData);
+            }
+            console.log(result)
+            if(result){
+            if(result.count == requestBody.FileUploadData.length){
+            
+                return h.response(JSON.stringify({ status: "success", message: "Successfully inserted",bodyload: requestBody ,statuscode:200,result:result}));
+            }
+        }else{
+            return h.response(JSON.stringify({ status: "Failure", message: "Failed insertion",bodyload: requestBody ,statuscode:201,result:result}));
+        }
+        } catch (error) {
+            console.log("error", error);
+            return Boom.badImplementation(JSON.stringify(error))
+        }
 
+
+    }
+
+
+    public async accessdata(request: Hapi.Request, h: Hapi.ResponseToolkit) {
+        try {
+            var data:any;
+           
+            data = await new regService().accessData();
+            for (var i=0; i<data.length; i++){
+                data[i].employeeid=data[i].employeeid.toString()
+                data[i].sum=data[i].sum.toString();
+               
+            }
+            console.log(data)
+            if(data){
+            
+            
+                return h.response(JSON.stringify({ status: "success", message: "Successfully inserted" ,statuscode:200,result:data}));
+          
+        }else{
+            return h.response(JSON.stringify({ status: "Failure", message: "Failed insertion" ,statuscode:201,result:data}));
+        }
+        } catch (error) {
+            console.log("error", error);
+            return Boom.badImplementation(JSON.stringify(error))
+        }
+
+
+    }
  
     
 

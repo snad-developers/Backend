@@ -116,5 +116,52 @@ export class regService {
 
     }
 
+    public async fileupload(theDto): Promise<any> {
+
+        try {
+            return await this.prisma.timesheet.createMany({
+                data:theDto
+                })
+
+            //return await this.prisma.$queryRaw`SELECT t.employeeid,ed.jobtitle,ed.gender,sum(t.operationalcost) FROM empdata ed JOIN timesheet t ON t.employeeid=ed.employeenumber group by t.employeeid,ed.jobtitle,ed.gender order by 1 asc`
+            //return await this.prisma.$queryRaw`SELECT * FROM fileupload`
+            // return await this.prisma.$queryRaw
+            // `INSERT INTO fileupload (column1,column2,column3)
+            // VALUES ( ${column1},${column2},${column3})`
+            // return await this.prisma.$queryRaw
+            // `INSERT INTO fileupload (column1,column2,column3)
+            // VALUES  ${theDto}`
+            // return await this.prisma.fileupload.create({
+            //     data: {
+            //         ...theDto
+            //     }
+            // });
+
+        } catch (error) {
+            
+            console.log(error);
+
+        } finally {
+
+            await this.prisma.$disconnect();
+
+        }
+
+    }
+    public async accessData(): Promise<any> {
+
+        try {
+            return await this.prisma.$queryRaw`SELECT t.employeeid,ed.jobtitle,ed.gender,sum(t.operationalcost) FROM empdata ed JOIN timesheet t ON t.employeeid=ed.employeenumber group by t.employeeid,ed.jobtitle,ed.gender order by 1 asc`
+        } catch (error) {
+            
+            console.log(error);
+
+        } finally {
+
+            await this.prisma.$disconnect();
+
+        }
+
+    }
 
 }

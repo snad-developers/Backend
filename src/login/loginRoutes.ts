@@ -57,6 +57,22 @@ const loginRoutes = {
                 options: {
                     tags: [ 'api' ]
                 }
+            },
+            {
+                method:'POST',
+                path:'/fileupload',
+                handler:controller.fileupload,
+                options: {
+                    tags: [ 'api' ]
+                }
+            },
+            {
+                method:'GET',
+                path:'/accessdata',
+                handler:controller.accessdata,
+                options: {
+                    tags: [ 'api' ]
+                }
             }
            
         ]);

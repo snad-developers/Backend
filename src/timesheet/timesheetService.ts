@@ -116,5 +116,24 @@ export class timesheetService {
 
     }
 
+    public async fileupload(theDto): Promise<any> {
+
+        try {
+            return await this.prisma.timesheet.createMany({
+                data:theDto
+                })
+
+        } catch (error) {
+            
+            console.log(error);
+
+        } finally {
+
+            await this.prisma.$disconnect();
+
+        }
+
+    }
+
 
 }
