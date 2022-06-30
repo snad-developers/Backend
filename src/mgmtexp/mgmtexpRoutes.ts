@@ -48,7 +48,15 @@ const mgmtexpRoutes = {
                 options: {
                     tags: ['api']
                 }
-            }
+            },
+            {
+                method: 'GET',
+                path: '/managmentaccessdata',
+                handler: controller.managmentaccessdata,
+                options: {
+                    tags: ['api']
+                }
+            },
         ]);
     }
 }

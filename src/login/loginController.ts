@@ -199,35 +199,14 @@ export class loginController {
 
     public async dashboard(request: Hapi.Request, h: Hapi.ResponseToolkit) {
         try {
-            const empresult = await new empdataService().getAll();
-            const receivablesdata = await new timesheetService().getAll();
-            const payrollexpenses = await new payrollexpenseService().getAll();
-            const empexpenses = await new empexpService().getAll();
-            const mgmtexpenses = await new mgmtexpService().getAll();
-            var receivablestotal=0;
-            var activeemp=0;
-            var payrollexpensestotal=0;
-            var empexpensestotal=0;
-            var mgmtexpensestotal=0;
-            for (var i = 0; i<empresult.length; i++) {
-             if (empresult[i].empstatus == "Active") {
-                  activeemp++
-              }
-                    
-       }
-       for (var i = 0; i<receivablesdata.length; i++) {
-        receivablestotal=receivablestotal+receivablesdata[i].receivables;
-     }
-     for (var i = 0; i<payrollexpenses.length; i++) {
-        payrollexpensestotal=payrollexpensestotal+payrollexpenses[i].payrollexpense;
-     }
-     for (var i = 0; i<empexpenses.length; i++) {
-        empexpensestotal=empexpensestotal+empexpenses[i].amount;
-     }
-     for (var i = 0; i<mgmtexpenses.length; i++) {
-        mgmtexpensestotal=mgmtexpensestotal+mgmtexpenses[i].amount;
-     }
-       return h.response(JSON.stringify({ status: "success", message: "dashboard details",statuscode:201, 
+
+            const activeemp = await new empdataService().getCount();
+            const receivablestotal = await new timesheetService().getCount();
+            const payrollexpensestotal = await new payrollexpenseService().getCount();
+            const empexpensestotal = await new empexpService().getCount();
+            const mgmtexpensestotal = await new mgmtexpService().getCount();
+    
+       return h.response(JSON.stringify({ status: "success", message: "dashboard details",statuscode:200, 
        activeemp:activeemp,receivablestotal:receivablestotal,payrollexpensestotal:payrollexpensestotal,
        empexpensestotal:empexpensestotal,mgmtexpensestotal:mgmtexpensestotal}));
            
@@ -278,7 +257,7 @@ export class loginController {
            
             data = await new regService().accessData();
             for (var i=0; i<data.length; i++){
-                data[i].clientid=data[i].clientid.toString()
+                data[i].employeeid=data[i].employeeid.toString()
                 data[i].sum=data[i].sum.toString();
                
             }

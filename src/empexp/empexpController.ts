@@ -68,5 +68,31 @@ export class empexpController {
             return Boom.badImplementation(JSON.stringify(error))
         }
     }
+    public async employeeaccessdata(request: Hapi.Request, h: Hapi.ResponseToolkit) {
+        try {
+            var data:any;
+           
+            data = await new empexpService().employeeaccessdata();
+            for (var i=0; i<data.length; i++){
+                data[i].employeeid=data[i].employeeid.toString()
+                data[i].sum=data[i].sum.toString();
+               
+            }
+            if(data){
+            
+            
+                return h.response(JSON.stringify({ status: "success", message: "Successfully inserted" ,statuscode:200,result:data}));
+          
+        }else{
+            return h.response(JSON.stringify({ status: "Failure", message: "Failed insertion" ,statuscode:201,result:data}));
+        }
+        } catch (error) {
+            console.log("error", error);
+            return Boom.badImplementation(JSON.stringify(error))
+        }
+
+
+    }
+
 
 }

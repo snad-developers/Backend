@@ -48,7 +48,15 @@ const empexpRoutes = {
                 options: {
                     tags: ['api']
                 }
-            }
+            },
+            {
+                method: 'GET',
+                path: '/employeeaccessdata',
+                handler: controller.employeeaccessdata,
+                options: {
+                    tags: ['api']
+                }
+            },
         ]);
     }
  }
