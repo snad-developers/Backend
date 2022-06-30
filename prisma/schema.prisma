@@ -158,8 +158,6 @@ model empexp{
   
   employeeid              Int     @db.Integer
   entity                  String  @db.VarChar
-  startdate               String  @db.VarChar
-  enddate                 String  @db.VarChar
   expensecode             String  @db.VarChar
   expensedate             String  @db.VarChar
   clientcode              Int     @db.Integer

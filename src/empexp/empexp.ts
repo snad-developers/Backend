@@ -1,8 +1,6 @@
 export interface empexp{
     employeeid: number;
     entity: string;
-    startdate: string;
-    enddate: string;
     expensecode: string;
     expensedate: string;
     clientcode:number;
@@ -20,8 +18,6 @@ export interface empexp{
 export interface Createempexp {
     employeeid: number;
     entity: string;
-    startdate: string;
-    enddate: string;
     expensecode: string;
     expensedate: string;
     clientcode:number;
@@ -38,8 +34,6 @@ export interface Createempexp {
 export interface Updateempexp {
     employeeid?: number;
     entity?: string;
-    startdate?: string;
-    enddate?: string;
     expensecode?: string;
     expensedate?: string;
     clientcode?:number;
