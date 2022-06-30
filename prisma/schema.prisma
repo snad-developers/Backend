@@ -21,10 +21,10 @@ model Users {
 
 model empdata {
     id                      Int    @id @default(autoincrement())
-    employeenumber          Int    @db.Integer @unique
-    employeefirstName       String @db.VarChar
-    employeelastName        String @db.VarChar
-    employeefullname        String @db.VarChar
+    employeeid              Int    @db.Integer @unique
+    firstname               String @db.VarChar
+    lastname                String @db.VarChar
+    fullname                String @db.VarChar
     empstatus               String @db.VarChar
     emailaddress            String @db.VarChar
     jobtitle                String @db.VarChar
@@ -79,11 +79,11 @@ model reg {
     }
 
 model mgmtexp {
-    mgmtempid         Int     @db.Integer
+    employeeid         Int     @db.Integer
     org               String  @db.VarChar
     typeofexp         String  @db.VarChar
     expdate           String  @db.VarChar
-    amt               Int     @db.Integer
+    amount               Int     @db.Integer
     approvedby        Int     @db.Integer
     approvaldate      String  @db.VarChar
     modeofpayment     String  @db.VarChar
@@ -94,11 +94,11 @@ model mgmtexp {
 }
 
 model imgexp {
-    mgmtempid         Int     @db.Integer
+    employeeid         Int     @db.Integer
     org               String  @db.VarChar
     typeofexp         String  @db.VarChar
     expdate           String  @db.VarChar
-    amt               Int     @db.Integer
+    amount               Int     @db.Integer
     approvedby        Int     @db.Integer
     approvaldate      String  @db.VarChar
     modeofpayment     String  @db.VarChar
@@ -128,7 +128,7 @@ model payrollexpense {
     updatedby         Int       @db.Integer
     updateddate       String    @db.VarChar
     id                 Int     @id @default(autoincrement())
-    employee          empdata  @relation(fields: [employeeid], references: [employeenumber])
+    employee          empdata  @relation(fields: [employeeid], references: [employeeid])
     employeeid        Int    
 }
 

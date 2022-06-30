@@ -1,10 +1,10 @@
 export interface imgexp {
     
-    mgmtempid: number;
+    employeeid: number;
     org: string;
     typeofexp: string;
     expdate:string;
-    amt: number;
+    amount: number;
     approvedby: number;
     approvaldate:string;
     modeofpayment:string;
@@ -16,11 +16,11 @@ export interface imgexp {
 }
 export interface Createimgexp {
     
-    mgmtempid: number;
+    employeeid: number;
     org: string;
     typeofexp: string;
     expdate: string;
-    amt: number;
+    amount: number;
     approvedby: number;
     approvaldate:string;
     modeofpayment:string;
@@ -33,11 +33,11 @@ export interface Createimgexp {
 
 export interface Updateimgexp {
    
-    mgmtempid?: number;
+    employeeid?: number;
     org?: string;
     typeofexp?: string;
     expdate?: string;
-    amt?: number;
+    amount?: number;
     approvedby?: number;
     approvaldate?:string;
     modeofpayment?:string;

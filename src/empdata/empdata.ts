@@ -1,9 +1,9 @@
 export interface empdata {
     
-    employeenumber: number;
-    employeefirstName: string;
-    employeelastName: string;
-    employeefullname: string;
+    employeeid: number;
+    firstname: string;
+    lastname: string;
+    fullname: string;
     empstatus: string;
     emailaddress: string;
     jobtitle: string;
@@ -27,10 +27,10 @@ export interface empdata {
 }
 export interface Createempdata {
     
-    employeenumber: number;
-    employeefirstName: string;
-    employeelastName: string;
-    employeefullname: string;
+    employeeid: number;
+    firstname: string;
+    lastname: string;
+    fullname: string;
     empstatus: string;
     emailaddress: string;
     jobtitle: string;
@@ -55,10 +55,10 @@ export interface Createempdata {
 
 export interface Updateempdata {
    
-    employeenumber?: number;
-    employeefirstName?: string;
-    employeelastName?: string;
-    employeefullname?: string;
+    employeeid?: number;
+    firstname?: string;
+    lastname?: string;
+    fullname?: string;
     empstatus?: string;
     emailaddress?: string;
     jobtitle?: string;

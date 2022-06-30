@@ -225,7 +225,7 @@ export class loginController {
         empexpensestotal=empexpensestotal+empexpenses[i].amount;
      }
      for (var i = 0; i<mgmtexpenses.length; i++) {
-        mgmtexpensestotal=mgmtexpensestotal+mgmtexpenses[i].amt;
+        mgmtexpensestotal=mgmtexpensestotal+mgmtexpenses[i].amount;
      }
        return h.response(JSON.stringify({ status: "success", message: "dashboard details",statuscode:201, 
        activeemp:activeemp,receivablestotal:receivablestotal,payrollexpensestotal:payrollexpensestotal,

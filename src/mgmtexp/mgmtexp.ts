@@ -1,10 +1,10 @@
 export interface mgmtexp {
     
-    mgmtempid: number;
+    employeeid: number;
     org: string;
     typeofexp: string;
     expdate: string;
-    amt: number;
+    amount: number;
     approvedby: number;
     approvaldate:string;
     modeofpayment:string;
@@ -15,11 +15,11 @@ export interface mgmtexp {
 }
 export interface Createmgmtexp {
     
-    mgmtempid: number;
+    employeeid: number;
     org: string;
     typeofexp: string;
     expdate: string;
-    amt: number;
+    amount: number;
     approvedby: number;
     approvaldate:string;
     modeofpayment:string;
@@ -30,11 +30,11 @@ export interface Createmgmtexp {
 
 export interface Updatemgmtexp {
    
-    mgmtempid?: number;
+    employeeid?: number;
     org?: string;
     typeofexp?: string;
     expdate?: string;
-    amt?: number;
+    amount?: number;
     approvedby?: number;
     approvaldate?:string;
     modeofpayment?:string;
