@@ -11,18 +11,16 @@ export interface empdata {
     supervisor:number;
     visastatus:string;
     gender:string;
-    team:string;
+    entity:string;
     dateofbirth: string;
     clientname:string;
     clientcode:string;
     startdate:string;
     createdby:string;
     updatedby:string;
-    imigrationstatus:string;
+    immigrationstatus:string;
     highestdegree:string;
     university:string;
-    organization:string;
-    fieldofwork:string;
     contactnumber:number;
 }
 export interface Createempdata {
@@ -38,18 +36,16 @@ export interface Createempdata {
     supervisor:number;
     visastatus:string;
     gender:string;
-    team:string;
+    entity:string;
     dateofbirth: string;
     clientname:string;
     clientcode:string;
     startdate:string;
     createdby:string;
     updatedby:string;
-    imigrationstatus:string;
+    immigrationstatus:string;
     highestdegree:string;
     university:string;
-    organization:string;
-    fieldofwork:string;
     contactnumber:number;
 }
 
@@ -66,17 +62,15 @@ export interface Updateempdata {
     supervisor?:number;
     visastatus?:string;
     gender?:string;
-    team?:string;
+    entity?:string;
     dateofbirth?: string;
     clientname?:string;
     clientcode?:string;
     startdate?:string;
     createdby?:string;
     updatedby?:string;
-    imigrationstatus?:string;
+    immigrationstatus?:string;
     highestdegree?:string;
     university?:string;
-    organization?:string;
-    fieldofwork?:string;
     contactnumber?:number;
 }

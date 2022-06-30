@@ -1,8 +1,8 @@
 export interface imgexp {
     
     employeeid: number;
-    org: string;
-    typeofexp: string;
+    entity: string;
+    expensescode: string;
     expdate:string;
     amount: number;
     approvedby: number;
@@ -17,8 +17,8 @@ export interface imgexp {
 export interface Createimgexp {
     
     employeeid: number;
-    org: string;
-    typeofexp: string;
+    entity: string;
+    expensescode: string;
     expdate: string;
     amount: number;
     approvedby: number;
@@ -34,8 +34,8 @@ export interface Createimgexp {
 export interface Updateimgexp {
    
     employeeid?: number;
-    org?: string;
-    typeofexp?: string;
+    entity?: string;
+    expensescode?: string;
     expdate?: string;
     amount?: number;
     approvedby?: number;

@@ -32,19 +32,16 @@ model empdata {
     supervisor              Int    @db.Integer 
     visastatus              String @db.VarChar
     gender                  String @db.VarChar
-    team                    String @db.VarChar
+    entity                  String @db.VarChar
     dateofbirth             String @db.VarChar
     clientname              String @db.VarChar
     clientcode              String @db.VarChar 
     startdate               String @db.VarChar
-                  
     createdby               String @db.VarChar
     updatedby               String @db.VarChar
-    imigrationstatus        String @db.VarChar
+    immigrationstatus        String @db.VarChar
     highestdegree           String @db.VarChar
     university              String @db.VarChar
-    organization            String @db.VarChar
-    fieldofwork             String @db.VarChar
     contactnumber           Int    @db.Integer 
     payroll                 payrollexpense []
     }
@@ -80,8 +77,8 @@ model reg {
 
 model mgmtexp {
     employeeid         Int     @db.Integer
-    org               String  @db.VarChar
-    typeofexp         String  @db.VarChar
+    entity           String  @db.VarChar
+    expensecode         String  @db.VarChar
     expdate           String  @db.VarChar
     amount               Int     @db.Integer
     approvedby        Int     @db.Integer
@@ -95,8 +92,8 @@ model mgmtexp {
 
 model imgexp {
     employeeid         Int     @db.Integer
-    org               String  @db.VarChar
-    typeofexp         String  @db.VarChar
+    entity             String  @db.VarChar
+    expensescode         String  @db.VarChar
     expdate           String  @db.VarChar
     amount               Int     @db.Integer
     approvedby        Int     @db.Integer

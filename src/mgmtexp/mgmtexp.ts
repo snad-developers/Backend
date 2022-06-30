@@ -1,8 +1,8 @@
 export interface mgmtexp {
     
     employeeid: number;
-    org: string;
-    typeofexp: string;
+    entity: string;
+    expensecode: string;
     expdate: string;
     amount: number;
     approvedby: number;
@@ -16,8 +16,8 @@ export interface mgmtexp {
 export interface Createmgmtexp {
     
     employeeid: number;
-    org: string;
-    typeofexp: string;
+    entity: string;
+    expensecode: string;
     expdate: string;
     amount: number;
     approvedby: number;
@@ -31,8 +31,8 @@ export interface Createmgmtexp {
 export interface Updatemgmtexp {
    
     employeeid?: number;
-    org?: string;
-    typeofexp?: string;
+    entity?: string;
+    expensecode?: string;
     expdate?: string;
     amount?: number;
     approvedby?: number;
