@@ -133,10 +133,6 @@ export class payrollexpenseService {
         }
 
     }
-
-}
-
-
     public async getCount(): Promise<number> {
 
         try {
@@ -153,6 +149,5 @@ export class payrollexpenseService {
 
         }
 
-    }
-
-
+}
+}
