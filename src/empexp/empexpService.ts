@@ -115,6 +115,25 @@ export class empexpService {
         }
 
     }
+    public async employeeaccessdata(): Promise<any> {
+
+        try {
+            return await this.prisma.$queryRaw`SELECT e.employeeid,ed.firstname,ed.lastname,sum(e.amount)
+            FROM empdata ed
+            JOIN empexp e ON e.employeeid=ed.employeeid
+            group by e.employeeid,ed.firstname,ed.lastname order by 1 asc`
+        } catch (error) {
+            
+            console.log(error);
+
+        } finally {
+
+            await this.prisma.$disconnect();
+
+        }
+
+    }
+
 
 
 }

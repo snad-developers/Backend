@@ -48,7 +48,15 @@ const payrollexpenseRoutes = {
                 options: {
                     tags: ['api']
                 }
-            }
+            },
+            {
+                method: 'GET',
+                path: '/payrollaccess',
+                handler: controller.payrollaccessdata,
+                options: {
+                    tags: ['api']
+                }
+            },
         ]);
     }
 }

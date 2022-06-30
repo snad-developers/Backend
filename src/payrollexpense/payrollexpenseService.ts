@@ -115,6 +115,26 @@ export class payrollexpenseService {
         }
 
     }
+    public async payrollaccessdata(): Promise<any> {
 
+        try {
+            return await this.prisma.$queryRaw`SELECT p.employeeid,ed.firstname,ed.lastname,sum(p.totalpayroll)
+            FROM empdata ed
+            JOIN payrollexpense p ON p.employeeid=ed.employeeid
+            group by p.employeeid,ed.firstname,ed.lastname order by 1 asc`
+        } catch (error) {
+            
+            console.log(error);
+
+        } finally {
+
+            await this.prisma.$disconnect();
+
+        }
+
+    }
 
 }
+
+
+

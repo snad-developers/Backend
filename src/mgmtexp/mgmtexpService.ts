@@ -115,6 +115,24 @@ export class mgmtexpService {
         }
 
     }
+    public async managmentaccessdata(): Promise<any> {
+
+        try {
+            return await this.prisma.$queryRaw`SELECT m.employeeid,ed.firstname,ed.lastname,sum(m.amount)
+            FROM empdata ed
+            JOIN mgmtexp m ON m.employeeid=ed.employeeid
+            group by m.employeeid,ed.firstname,ed.lastname order by 1 asc`
+        } catch (error) {
+            
+            console.log(error);
+
+        } finally {
+
+            await this.prisma.$disconnect();
+
+        }
+
+    }
 
 
 }
