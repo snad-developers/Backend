@@ -21,7 +21,7 @@ model Users {
 
 model empdata {
     id                      Int    @id @default(autoincrement())
-    employeenumber          Int    @db.Integer 
+    employeenumber          Int    @db.Integer @unique
     employeefirstName       String @db.VarChar
     employeelastName        String @db.VarChar
     employeefullname        String @db.VarChar
@@ -128,7 +128,7 @@ model payrollexpense {
     updatedby         Int       @db.Integer
     updateddate       String    @db.VarChar
     id                 Int     @id @default(autoincrement())
-    employee          empdata  @relation(fields: [employeeid], references: [id])
+    employee          empdata  @relation(fields: [employeeid], references: [employeenumber])
     employeeid        Int    
 }
 
