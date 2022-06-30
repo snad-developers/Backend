@@ -135,5 +135,23 @@ export class timesheetService {
 
     }
 
+    public async getCount(): Promise<number> {
+
+        try {
+
+            const response =  await this.prisma.timesheet.aggregate({_sum:{ receivables:true},where:{ReceivablesPaid:'no'}});
+            return response._sum.receivables;
+
+        } catch (error) {
+            console.log(error);
+
+        } finally {
+            await this.prisma.$disconnect();
+
+
+        }
+
+    }
+
 
 }
