@@ -21,7 +21,7 @@ model Users {
 
 model empdata {
     id                      Int    @id @default(autoincrement())
-    employeenumber          String @db.VarChar
+    employeenumber          Int    @db.Integer 
     employeefirstName       String @db.VarChar
     employeelastName        String @db.VarChar
     employeefullname        String @db.VarChar
@@ -29,14 +29,15 @@ model empdata {
     emailaddress            String @db.VarChar
     jobtitle                String @db.VarChar
     internalstaff           String @db.VarChar
-    supervisor              String @db.VarChar
+    supervisor              Int    @db.Integer 
     visastatus              String @db.VarChar
     gender                  String @db.VarChar
     team                    String @db.VarChar
     dateofbirth             String @db.VarChar
     clientname              String @db.VarChar
-    clientcode              String @db.VarChar
+    clientcode              String @db.VarChar 
     startdate               String @db.VarChar
+                  
     createdby               String @db.VarChar
     updatedby               String @db.VarChar
     imigrationstatus        String @db.VarChar
@@ -44,7 +45,7 @@ model empdata {
     university              String @db.VarChar
     organization            String @db.VarChar
     fieldofwork             String @db.VarChar
-    contactnumber           String @db.VarChar
+    contactnumber           Int    @db.Integer 
     payroll                 payrollexpense []
     }
 
@@ -184,7 +185,11 @@ model clientdata{
   id                              Int     @id @default(autoincrement())
 }  
 model orgndata{
- entity     String  @db.VarChar
- role       String  @db.VarChar
+ entity       String  @db.VarChar
+ id         Int     @id @default(autoincrement())
+}
+
+model roles{
+ roles       String  @db.VarChar
  id         Int     @id @default(autoincrement())
 }
