@@ -250,7 +250,7 @@ export class loginController {
                // console.log(requestBody.filename)
             result = await new imgexpService().fileupload(requestBody.FileUploadData);
             }
-            console.log(result)
+           // console.log(result)
             if(result){
             if(result.count == requestBody.FileUploadData.length){
             
