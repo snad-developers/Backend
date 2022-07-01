@@ -151,9 +151,9 @@ export class regService {
     public async accessData(): Promise<any> {
 
         try {
-            return await this.prisma.$queryRaw`SELECT t.clientid,c.clientname,sum(t.receivables) 
+            return await this.prisma.$queryRaw`SELECT t.clientid,c.clientname,sum(t.receivables)
             FROM clientdata c
-            JOIN timesheet t ON t.clientid=c.clientcode
+            JOIN timesheet t ON t.clientid=c.clientcode WHERE t.receivablespaid='no'
             group by t.clientid,c.clientname order by 1 asc`
         } catch (error) {
             
