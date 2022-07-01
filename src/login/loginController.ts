@@ -223,31 +223,31 @@ export class loginController {
             const requestBody: fileupload = request.payload as fileupload;
             var result:any;
             if(requestBody.filename == "0"){
-                console.log(requestBody.filename)
+                //console.log(requestBody.filename)
             result = await new clientdataService().fileupload(requestBody.FileUploadData);
             }
             if(requestBody.filename == "1"){
-                console.log(requestBody.filename)
+              //  console.log(requestBody.filename)
             result = await new payrollexpenseService().fileupload(requestBody.FileUploadData);
             }
             if(requestBody.filename == "2"){
-                console.log(requestBody.filename)
+                //console.log(requestBody.filename)
             result = await new timesheetService().fileupload(requestBody.FileUploadData);
             }
             if(requestBody.filename == "3"){
-                console.log(requestBody.filename)
+               // console.log(requestBody.filename)
             result = await new mgmtexpService().fileupload(requestBody.FileUploadData);
             }
             if(requestBody.filename == "4"){
-                console.log(requestBody.filename)
+               // console.log(requestBody.filename)
                 result = await new empdataService().fileupload(requestBody.FileUploadData);
                 }
             if(requestBody.filename == "5"){
-                console.log(requestBody.filename)
+                //console.log(requestBody.filename)
             result = await new empexpService().fileupload(requestBody.FileUploadData);
             }
             if(requestBody.filename == "6"){
-                console.log(requestBody.filename)
+               // console.log(requestBody.filename)
             result = await new imgexpService().fileupload(requestBody.FileUploadData);
             }
             console.log(result)
