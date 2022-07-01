@@ -42,7 +42,6 @@ model empdata {
     immigrationstatus        String @db.VarChar
     highestdegree           String @db.VarChar
     university              String @db.VarChar
-    contactnumber           Int    @db.Integer 
     payroll                 payrollexpense []
     }
 
@@ -126,7 +125,7 @@ model payrollexpense {
     updateddate       String    @db.VarChar
     id                 Int     @id @default(autoincrement())
     employee          empdata  @relation(fields: [employeeid], references: [employeeid])
-    employeeid        Int    
+    employeeid        Int       @db.Integer
 }
 
 model timesheet {

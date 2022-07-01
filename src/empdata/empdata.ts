@@ -21,7 +21,6 @@ export interface empdata {
     immigrationstatus:string;
     highestdegree:string;
     university:string;
-    contactnumber:number;
 }
 export interface Createempdata {
     
@@ -46,7 +45,6 @@ export interface Createempdata {
     immigrationstatus:string;
     highestdegree:string;
     university:string;
-    contactnumber:number;
 }
 
 export interface Updateempdata {
@@ -72,5 +70,4 @@ export interface Updateempdata {
     immigrationstatus?:string;
     highestdegree?:string;
     university?:string;
-    contactnumber?:number;
 }

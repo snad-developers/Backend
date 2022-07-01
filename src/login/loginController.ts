@@ -72,7 +72,7 @@ export class loginController {
           }
 
           if(!result){
-            return h.response(JSON.stringify({ status: "failure", message: "inValid User",bodyload: requestBody ,statuscode:201}));
+            return h.response(JSON.stringify({ status: "failure", message: "invalid User Id or Password",bodyload: requestBody ,statuscode:201}));
           }
 
        
