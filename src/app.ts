@@ -12,6 +12,7 @@ import loginRoutes from "./login/loginRoutes";
 import clientdataRoutes from "./clientdata/clientdataRoutes";
 import orgndataRoutes from "./orgndata/orgndataRoutes";
 import rolesRoutes from "./roles/rolesRoutes";
+import expensesRoutes from "./expenses/expensesRoutes";
 import * as HapiSwagger from "../node_modules/hapi-swagger";
 import * as Inert from "@hapi/inert";
 import * as Vision from "@hapi/vision";
@@ -90,6 +91,7 @@ class App {
             clientdataRoutes,
             orgndataRoutes,
             rolesRoutes,
+            expensesRoutes,
             
     
 
