@@ -139,7 +139,7 @@ export class timesheetService {
 
         try {
 
-            const response =  await this.prisma.timesheet.aggregate({_sum:{ receivables:true},where:{receivablespaid:'no'}});
+            const response =  await this.prisma.timesheet.aggregate({_sum:{ receivables:true},where:{receivablespaid:'No'}});
             return response._sum.receivables;
 
         } catch (error) {

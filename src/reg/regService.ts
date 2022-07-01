@@ -153,7 +153,7 @@ export class regService {
         try {
             return await this.prisma.$queryRaw`SELECT t.clientid,c.clientname,sum(t.receivables)
             FROM clientdata c
-            JOIN timesheet t ON t.clientid=c.clientcode WHERE t.receivablespaid='no'
+            JOIN timesheet t ON t.clientid=c.clientcode WHERE t.receivablespaid='No'
             group by t.clientid,c.clientname order by 1 asc`
         } catch (error) {
             
