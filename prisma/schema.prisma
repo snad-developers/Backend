@@ -139,7 +139,7 @@ model timesheet {
     creationdate    String    @db.VarChar
     operationalcost  Int      @db.Integer
     receivables     Int       @db.Integer
-    ReceivablesPaid String    @db.VarChar
+    receivablespaid String    @db.VarChar
     createdby       Int       @db.Integer
     updatedby       Int       @db.Integer
     updateddate     String    @db.VarChar

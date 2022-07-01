@@ -153,5 +153,24 @@ export class empexpService {
 
     }
 
+    public async fileupload(theDto): Promise<any> {
+
+        try {
+            return await this.prisma.empexp.createMany({
+                data:theDto
+                })
+
+        } catch (error) {
+            
+            console.log(error);
+
+        } finally {
+
+            await this.prisma.$disconnect();
+
+        }
+
+    }
+
 
 }

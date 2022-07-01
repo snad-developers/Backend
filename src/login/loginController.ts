@@ -8,6 +8,7 @@ import { payrollexpenseService } from "../payrollexpense/payrollexpenseService";
 import { empexpService } from "../empexp/empexpService";
 import { mgmtexpService } from "../mgmtexp/mgmtexpService";
 import { imgexpService } from "../imgexp/imgexpService";
+import { clientdataService } from "../clientdata/clientdataService";
 
 
 
@@ -223,13 +224,29 @@ export class loginController {
             var result:any;
             if(requestBody.filename == "0"){
                 console.log(requestBody.filename)
-                result = await new empdataService().fileupload(requestBody.FileUploadData);
-                }
+            result = await new clientdataService().fileupload(requestBody.FileUploadData);
+            }
             if(requestBody.filename == "1"){
+                console.log(requestBody.filename)
+            result = await new payrollexpenseService().fileupload(requestBody.FileUploadData);
+            }
+            if(requestBody.filename == "2"){
                 console.log(requestBody.filename)
             result = await new timesheetService().fileupload(requestBody.FileUploadData);
             }
-            if(requestBody.filename == "2"){
+            if(requestBody.filename == "3"){
+                console.log(requestBody.filename)
+            result = await new mgmtexpService().fileupload(requestBody.FileUploadData);
+            }
+            if(requestBody.filename == "4"){
+                console.log(requestBody.filename)
+                result = await new empdataService().fileupload(requestBody.FileUploadData);
+                }
+            if(requestBody.filename == "5"){
+                console.log(requestBody.filename)
+            result = await new empexpService().fileupload(requestBody.FileUploadData);
+            }
+            if(requestBody.filename == "6"){
                 console.log(requestBody.filename)
             result = await new imgexpService().fileupload(requestBody.FileUploadData);
             }

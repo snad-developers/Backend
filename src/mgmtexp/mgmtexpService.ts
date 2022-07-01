@@ -152,5 +152,24 @@ export class mgmtexpService {
 
     }
 
+    public async fileupload(theDto): Promise<any> {
+
+        try {
+            return await this.prisma.mgmtexp.createMany({
+                data:theDto
+                })
+
+        } catch (error) {
+            
+            console.log(error);
+
+        } finally {
+
+            await this.prisma.$disconnect();
+
+        }
+
+    }
+
 
 }

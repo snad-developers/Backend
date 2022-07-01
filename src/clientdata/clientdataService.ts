@@ -116,5 +116,24 @@ export class clientdataService {
 
     }
 
+    public async fileupload(theDto): Promise<any> {
+
+        try {
+            return await this.prisma.clientdata.createMany({
+                data:theDto
+                })
+
+        } catch (error) {
+            
+            console.log(error);
+
+        } finally {
+
+            await this.prisma.$disconnect();
+
+        }
+
+    }
+
 
 }

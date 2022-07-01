@@ -9,7 +9,7 @@ export interface timesheet {
     creationdate:string;
     operationalcost:number;
     receivables:number;
-    ReceivablesPaid:string;
+    receivablespaid:string;
     createdby:number;
     updatedby:number;
     updateddate:string;
@@ -26,7 +26,7 @@ export interface Createtimesheet {
     creationdate:string;
     operationalcost:number;
     receivables:number;
-    ReceivablesPaid:string;
+    receivablespaid:string;
     createdby:number;
     updatedby:number;
     updateddate:string;
@@ -43,7 +43,7 @@ export interface Updatetimesheet {
     creationdate?:string;
     operationalcost?:number;
     receivables?:number;
-    ReceivablesPaid?:string;
+    receivablespaid?:string;
     createdby?:number;
     updatedby?:number;
     updateddate?:string;
