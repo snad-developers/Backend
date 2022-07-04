@@ -188,3 +188,8 @@ model roles{
  roles       String  @db.VarChar
  id         Int     @id @default(autoincrement())
 }
+model expenses {
+  expensecode   String  @db.VarChar
+  expenses       String  @db.VarChar
+  id         Int     @id @default(autoincrement())
+}
