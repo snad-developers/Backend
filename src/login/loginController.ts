@@ -17,56 +17,25 @@ export class loginController {
      public async LoginCheck(request: Hapi.Request, h: Hapi.ResponseToolkit) {
         try {
             //const id: number = request.params.id;
-            const requestBody: login = request.payload as login
-            //const requestBodydata= request.payload
-            // const result = await new regService().LoginInsert(requestBody);
-            // const email = request.params.email;
-            // const password= request.params.password;
-            //const requestBody: Createreg = request.payload as Createreg
-           
+            const requestBody: login = request.payload as login 
            const loginresult = await new regService().getAll();
+           
           var  result:boolean = false;
           var errmessage = null;
            for (var i = 0; i < loginresult.length; i++) {
-            // Exit early if one of them fails
-            // if(loginresult[i].email !== requestBody.email){
-            //     return h.response(JSON.stringify({ status: "failure", message: "User not Registered",bodyload: requestBody ,statuscode:201}));
-                    
-            // }
-
-            // if (loginresult[i].email == requestBody.email && loginresult[i].password !== requestBody.password) {
-            //     // result=true;
-            //     return h.response(JSON.stringify({ status: "failure", message: "Password is Incorrect",bodyload: requestBody ,statuscode:201}));
-            // }
-
-
-            // if (loginresult[i].email == requestBody.email && loginresult[i].password == requestBody.password && loginresult[i].entity !== requestBody.entity) {
-            //     // result=true;
-            //     return h.response(JSON.stringify({ status: "failure", message: "Please choose correct Entity",bodyload: requestBody ,statuscode:201}));
-
-            // }
-
-            // if (loginresult[i].email == requestBody.email && loginresult[i].password == requestBody.password && loginresult[i].entity == requestBody.entity && loginresult[i].status == "pending") {
-                
-            //     return h.response(JSON.stringify({ status: "failure", message: "User is Pending. Please contact Admin",bodyload: requestBody ,statuscode:201}));
-
-
-            // }
-
-            // if (loginresult[i].email == requestBody.email && loginresult[i].password == requestBody.password && loginresult[i].entity == requestBody.entity && loginresult[i].status == "Rejected") {
-                
-            //     return h.response(JSON.stringify({ status: "failure", message: "User  Rejected. Please contact Admin",bodyload: requestBody ,statuscode:201}));
-
-
-            // }
-
-
             if (loginresult[i].email == requestBody.email && loginresult[i].password == requestBody.password && loginresult[i].entity == requestBody.entity && loginresult[i].status == "Approved") {
                result=true;
-            //    logid = loginresult[i].id
-               
-            
-               return h.response(JSON.stringify({ status: "success", message: "Valid User",bodyload: requestBody ,statuscode:200,logid:loginresult[i]}));
+               var logindetails=
+               { firstName:loginresult[i].firstName,
+               lastName:loginresult[i].lastName,
+               password:loginresult[i].password,
+               email:loginresult[i].email,
+               entity:loginresult[i].entity,
+               role:loginresult[i].role,
+               login:"true"
+            }
+        
+               return h.response(JSON.stringify({ status: "success", message: "Valid User",statuscode:200,logindetails:logindetails,loginedIn:true}));
             }
            
           }
