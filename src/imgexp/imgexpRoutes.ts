@@ -48,7 +48,16 @@ const imgexpRoutes = {
                 options: {
                     tags: ['api']
                 }
-            }
+            },
+
+            {
+                method: 'GET',
+                path: '/operationalaccess',
+                handler: controller.operationalaccess,
+                options: {
+                    tags: ['api']
+                }
+            },
         ]);
     }
 }
