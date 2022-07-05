@@ -113,7 +113,7 @@ export class loginController {
         }
 
         if(!result){
-            return h.response(JSON.stringify({ status: "failure", message: "inValid User",bodyload: requestBody,statuscode:201}));
+            return h.response(JSON.stringify({ status: "failure", message: "invalid User",bodyload: requestBody,statuscode:201}));
         }
         
         
@@ -226,7 +226,7 @@ export class loginController {
                 return h.response(JSON.stringify({ status: "success", message: "Successfully inserted",bodyload: requestBody ,statuscode:200,result:result}));
             }
         }else{
-            return h.response(JSON.stringify({ status: "Failure", message: "Failed insertion",bodyload: requestBody ,statuscode:201,result:result}));
+            return h.response(JSON.stringify({ status: "Failure", message: "Failed to load data",bodyload: requestBody ,statuscode:201,result:result}));
         }
         } catch (error) {
             console.log("error", error);
