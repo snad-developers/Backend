@@ -138,20 +138,39 @@ export class imgexpService {
     public async operational(): Promise<any> {
 
         try {
-            return await this.prisma.$queryRaw`SELECT ed.employeeid,ed.firstname,ed.lastname,sum(e.amount) as totalexpenses FROM empdata ed
-            INNER JOIN empexp e ON e.employeeid=ed.employeeid
-            WHERE expensecode in ('TRAV-001','INT-009','FLIG-002','VISA-005')
-            GROUP BY ed.employeeid,ed.firstname,ed.lastname
-            union
-            SELECT ed.employeeid,ed.firstname,ed.lastname,sum(e.amount) as totalexpenses FROM empdata ed
-            INNER JOIN mgmtexp e ON e.employeeid=ed.employeeid
-            WHERE expensecode in ('TRAV-001','INT-009','FLIG-002','VISA-005')
-            GROUP BY ed.employeeid,ed.firstname,ed.lastname
-            union
-            SELECT ed.employeeid,ed.firstname,ed.lastname,sum(e.amount) as totalexpenses FROM empdata ed
-            INNER JOIN imgexp e ON e.employeeid=ed.employeeid
-            WHERE expensescode in ('H1 transfer')
-            GROUP BY ed.employeeid,ed.firstname,ed.lastname order by 1 asc;`
+            return await this.prisma.$queryRaw`
+            WITH emp_full
+            AS (SELECT u.employeeid,
+                       u.firstname,
+                       u.lastname
+                FROM   empdata u),
+            exp_full
+            AS (SELECT e.employeeid,
+                       e.expensecode,
+                       e.amount
+                FROM   empexp e
+                UNION
+                SELECT v.employeeid,
+                       v.expensescode,
+                       v.amount
+                FROM   imgexp v
+                UNION
+                SELECT m.employeeid,
+                       m.expensecode,
+                       m.amount
+                FROM   mgmtexp m)
+       SELECT e.employeeid,
+              e.firstname,
+              e.lastname,
+              SUM(ex.amount) AS totalexpenses
+       FROM   emp_full e
+              join exp_full ex
+                ON ex.employeeid = e.employeeid
+       WHERE  ex.expensecode IN ( 'FLIG-002', 'VISA-005', 'TRAV-001', 'INT-006',
+                                  'Labour-015', 'H1B-011' )
+       GROUP  BY e.employeeid,
+                 e.firstname,
+                 e.lastname; `
         } catch (error) {
             
             console.log(error);
