@@ -74,7 +74,7 @@ export class imgexpController {
             var data:any;
            
             data = await new imgexpService().operational();
-            console.log(data);
+            console.log(data)
             for (var i=0; i<data.length; i++){
                 data[i].employeeid=data[i].employeeid.toString()
                 data[i].totalexpenses=data[i].totalexpenses.toString();
