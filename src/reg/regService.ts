@@ -1,4 +1,5 @@
 import { PrismaClient, reg } from "@prisma/client"
+import { login } from "../login/login";
 import { Createreg, Updatereg } from "./reg";
 
 export class regService {
@@ -166,5 +167,39 @@ export class regService {
         }
 
     }
+    public async validUser(theDto: login,value:string): Promise<any> {
+
+        try {
+            if(value == 'ALL'){
+            return await this.prisma.$queryRaw`select * from reg where email = ${theDto.email} AND password = ${theDto.password} AND entity = ${theDto.entity} AND status = 'Approved'`
+            }
+            if(value == 'Email')
+            {
+                return await this.prisma.$queryRaw`select * from reg where email = ${theDto.email}`  
+            }
+            if(value == 'Password')
+            {
+                return await this.prisma.$queryRaw`select * from reg where email = ${theDto.email} AND password = ${theDto.password}`  
+            }
+            if(value == 'Entity')
+            {
+                return await this.prisma.$queryRaw`select * from reg where email = ${theDto.email} AND password = ${theDto.password} AND entity = ${theDto.entity}`  
+            }
+            if(value == 'status')
+            {
+                return await this.prisma.$queryRaw`select * from reg where email = ${theDto.email} AND password = ${theDto.password} AND entity = ${theDto.entity} AND status = 'Approved'`
+            }
+        } catch (error) {
+            
+            console.log(error);
+
+        } finally {
+
+            await this.prisma.$disconnect();
+
+        }
+
+    }
+    
 
 }
