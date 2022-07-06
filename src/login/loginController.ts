@@ -18,30 +18,58 @@ export class loginController {
         try {
             //const id: number = request.params.id;
             const requestBody: login = request.payload as login 
-           const loginresult = await new regService().getAll();
-           
-          var  result:boolean = false;
-          var errmessage = null;
-           for (var i = 0; i < loginresult.length; i++) {
-            if (loginresult[i].email == requestBody.email && loginresult[i].password == requestBody.password && loginresult[i].entity == requestBody.entity && loginresult[i].status == "Approved") {
+           //const loginresult = await new regService().getAll();
+
+           const validUser = await new regService().validUser(requestBody,'ALL');
+           var  result:boolean = false;
+    if(validUser.length > 0){
+           for (var i = 0; i < validUser.length; i++) {
                result=true;
-               var logindetails=
-               { firstName:loginresult[i].firstName,
-               lastName:loginresult[i].lastName,
-               password:loginresult[i].password,
-               email:loginresult[i].email,
-               entity:loginresult[i].entity,
-               role:loginresult[i].role,
+               var validUserResult=
+               { firstName:validUser[0].firstName,
+               lastName:validUser[0].lastName,
+               password:validUser[0].password,
+               email:validUser[0].email,
+               entity:validUser[0].entity,
+               role:validUser[0].role,
                login:"true"
             }
         
-               return h.response(JSON.stringify({ status: "success", message: "Valid User",statuscode:200,logindetails:logindetails,loginedIn:true}));
-            }
+               return h.response(JSON.stringify({ status: "success", message: "Valid User",statuscode:200,logindetails:validUserResult,loginedIn:true}));
+          
            
+          }
+        }else{
+            result=false;
+           var message=""
+            var CheckEmail = await new regService().validUser(requestBody,'Email');
+             if(CheckEmail.length > 0){
+                var CheckPassword = await new regService().validUser(requestBody,'Password');
+                if(CheckPassword.length > 0){
+                    var CheckEntity = await new regService().validUser(requestBody,'Entity');
+                    if(CheckEntity.length > 0){
+                        var Checkstatus = await new regService().validUser(requestBody,'status');
+                        if(Checkstatus.length > 0){
+
+                        }else{
+                            message="User is not Approved Please contact Admin"; 
+                        }
+
+                    }else{
+                        message="Invalid Entity";  
+                    }
+
+                }else{
+                    message="Incorrect Password";  
+                }
+                
+             }else{
+                message="User is not Registered";
+             }
           }
 
           if(!result){
-            return h.response(JSON.stringify({ status: "failure", message: "invalid User Id or Password",bodyload: requestBody ,statuscode:201}));
+            return h.response(JSON.stringify({ status: "failure", message: message,bodyload: requestBody ,statuscode:201,validUser:validUser}));
           }
 
        
