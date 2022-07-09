@@ -13,7 +13,7 @@ export class regService {
 
     }
 
-    public async create(theDto: Createreg): Promise<reg> {
+    public async create(theDto: Createreg): Promise<any> {
 
         try {
 
@@ -25,6 +25,9 @@ export class regService {
 
         } catch (error) {
             console.log(error);
+            if (error.meta.target == "email" && error.code == 'P2002') {
+                return "user already exists with this email"
+              }
 
         } finally {
 

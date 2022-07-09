@@ -10,7 +10,12 @@ export class regController {
         try {
             const requestBody: Createreg = request.payload as Createreg
             const result = await new regService().create(requestBody);
-            return h.response(result).code(201);
+           // console.log(result)
+            if(result && result.email == requestBody.email){
+            return h.response(JSON.stringify({ status: "success", message: "registered sucessfully",statuscode:200}));
+            }else{
+                return h.response(JSON.stringify({ status: "faliure", message: result,statuscode:200}));
+            }
         } catch (error) {
             request.log("error", error);
             return Boom.badImplementation(JSON.stringify(error))
