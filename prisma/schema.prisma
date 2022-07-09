@@ -52,7 +52,7 @@ model reg {
     firstName         String @db.VarChar 
     lastName          String @db.VarChar 
     idnumber          String @db.VarChar 
-    email             String @db.VarChar 
+    email             String @db.VarChar  @unique
     phoneNumber       String @db.VarChar 
     dateofBirth       String @db.VarChar
     gender            String @db.VarChar 
