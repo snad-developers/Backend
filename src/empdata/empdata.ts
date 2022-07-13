@@ -22,6 +22,12 @@ export interface empdata {
     highestdegree:string;
     university:string;
     contactnumber:number;
+    addressline1:string;
+    addressline2:string;
+    city:string;
+    state:string;
+    zipcode:number;
+    country:string;
 }
 export interface Createempdata {
     
@@ -47,6 +53,12 @@ export interface Createempdata {
     highestdegree:string;
     university:string;
     contactnumber:number;
+    addressline1:string;
+    addressline2:string;
+    city:string;
+    state:string;
+    zipcode:number;
+    country:string;
 
 }
 
@@ -74,5 +86,11 @@ export interface Updateempdata {
     highestdegree?:string;
     university?:string;
     contactnumber?:number;
+    addressline1?:string;
+    addressline2?:string;
+    city?:string;
+    state?:string;
+    zipcode?:number;
+    country?:string;
 
 }

@@ -43,6 +43,12 @@ model empdata {
     highestdegree           String @db.VarChar
     university              String @db.VarChar
     contactnumber           Int    @db.Integer
+    addressline1            String @db.VarChar
+    addressline2            String @db.VarChar
+    city                    String @db.VarChar
+    state                   String @db.VarChar
+    zipcode                 Int    @db.Integer
+    country                 String @db.VarChar
     payroll                 payrollexpense []
     }
 
