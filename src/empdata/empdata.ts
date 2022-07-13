@@ -28,6 +28,7 @@ export interface empdata {
     state:string;
     zipcode:number;
     country:string;
+    ssn:string;
 }
 export interface Createempdata {
     
@@ -59,6 +60,7 @@ export interface Createempdata {
     state:string;
     zipcode:number;
     country:string;
+    ssn:string;
 
 }
 
@@ -92,5 +94,6 @@ export interface Updateempdata {
     state?:string;
     zipcode?:number;
     country?:string;
+    ssn?:string;
 
 }

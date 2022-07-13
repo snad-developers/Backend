@@ -49,6 +49,7 @@ model empdata {
     state                   String @db.VarChar
     zipcode                 Int    @db.Integer
     country                 String @db.VarChar
+    ssn                     String @db.VarChar
     payroll                 payrollexpense []
     }
 
