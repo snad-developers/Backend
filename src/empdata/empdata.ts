@@ -22,6 +22,34 @@ export interface empdata {
     highestdegree:string;
     university:string;
     contactnumber:number;
+    addressline1:string;
+    addressline2:string;
+    city:string;
+    state:string;
+    zipcode:number;
+    country:string;
+    ssn:string;
+    taxfilenumber:number;
+    emergencynumber:number;
+    effectivedate:string;
+    location:string;
+    reportsto:string;
+    payschedule:string;
+    paytype:string;
+    payrate:string;
+    overtime:string;
+    overtimerate:string;
+    changereason:string;
+    comment:string;
+    specialization:string;
+    gpa:string;
+    degreestartdate:string;
+    degreeenddate:string;
+    date:string;
+    issuingcountry:string;
+    issueddate:string;
+    expirationdate:string;
+    status:string;
 }
 export interface Createempdata {
     
@@ -47,6 +75,34 @@ export interface Createempdata {
     highestdegree:string;
     university:string;
     contactnumber:number;
+    addressline1:string;
+    addressline2:string;
+    city:string;
+    state:string;
+    zipcode:number;
+    country:string;
+    ssn:string;
+    taxfilenumber:number;
+    emergencynumber:number;
+    effectivedate:string;
+    location:string;
+    reportsto:string;
+    payschedule:string;
+    paytype:string;
+    payrate:string;
+    overtime:string;
+    overtimerate:string;
+    changereason:string;
+    comment:string;
+    specialization:string;
+    gpa:string;
+    degreestartdate:string;
+    degreeenddate:string;
+    date:string;
+    issuingcountry:string;
+    issueddate:string;
+    expirationdate:string;
+    status:string;
 
 }
 
@@ -74,5 +130,33 @@ export interface Updateempdata {
     highestdegree?:string;
     university?:string;
     contactnumber?:number;
+    addressline1?:string;
+    addressline2?:string;
+    city?:string;
+    state?:string;
+    zipcode?:number;
+    country?:string;
+    ssn?:string;
+    taxfilenumber?:number;
+    emergencynumber?:number;
+    effectivedate?:string;
+    location?:string;
+    reportsto?:string;
+    payschedule?:string;
+    paytype?:string;
+    payrate?:string;
+    overtime?:string;
+    overtimerate?:string;
+    changereason?:string;
+    comment?:string;
+    specialization?:string;
+    gpa?:string;
+    degreestartdate?:string;
+    degreeenddate?:string;
+    date?:string;
+    issuingcountry?:string;
+    issueddate?:string;
+    expirationdate?:string;
+    status?:string;
 
 }
