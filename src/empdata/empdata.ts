@@ -29,6 +29,27 @@ export interface empdata {
     zipcode:number;
     country:string;
     ssn:string;
+    taxfilenumber:number;
+    emergencynumber:number;
+    effectivedate:string;
+    location:string;
+    reportsto:string;
+    payschedule:string;
+    paytype:string;
+    payrate:string;
+    overtime:string;
+    overtimerate:string;
+    changereason:string;
+    comment:string;
+    specialization:string;
+    gpa:string;
+    degreestartdate:string;
+    degreeenddate:string;
+    date:string;
+    issuingcountry:string;
+    issueddate:string;
+    expirationdate:string;
+    status:string;
 }
 export interface Createempdata {
     
@@ -61,6 +82,27 @@ export interface Createempdata {
     zipcode:number;
     country:string;
     ssn:string;
+    taxfilenumber:number;
+    emergencynumber:number;
+    effectivedate:string;
+    location:string;
+    reportsto:string;
+    payschedule:string;
+    paytype:string;
+    payrate:string;
+    overtime:string;
+    overtimerate:string;
+    changereason:string;
+    comment:string;
+    specialization:string;
+    gpa:string;
+    degreestartdate:string;
+    degreeenddate:string;
+    date:string;
+    issuingcountry:string;
+    issueddate:string;
+    expirationdate:string;
+    status:string;
 
 }
 
@@ -95,5 +137,26 @@ export interface Updateempdata {
     zipcode?:number;
     country?:string;
     ssn?:string;
+    taxfilenumber?:number;
+    emergencynumber?:number;
+    effectivedate?:string;
+    location?:string;
+    reportsto?:string;
+    payschedule?:string;
+    paytype?:string;
+    payrate?:string;
+    overtime?:string;
+    overtimerate?:string;
+    changereason?:string;
+    comment?:string;
+    specialization?:string;
+    gpa?:string;
+    degreestartdate?:string;
+    degreeenddate?:string;
+    date?:string;
+    issuingcountry?:string;
+    issueddate?:string;
+    expirationdate?:string;
+    status?:string;
 
 }
