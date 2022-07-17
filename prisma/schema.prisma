@@ -240,3 +240,15 @@ model visainformation{
   status           String  @db.VarChar
   id       Int     @id @default(autoincrement())
 }
+
+model compensation{
+    effectivedate        String  @db.VarChar
+    payschedule          String  @db.VarChar
+    paytype              String  @db.VarChar
+    payrate              String  @db.VarChar
+    overtime             String  @db.VarChar
+    overtimerate         String  @db.VarChar
+    changereason         String  @db.VarChar
+    comment              String  @db.VarChar
+    id       Int     @id @default(autoincrement())
+}
