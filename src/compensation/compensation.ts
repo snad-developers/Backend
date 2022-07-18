@@ -29,5 +29,4 @@ export interface Updatecompensation{
     overtimerate?:string;
     changereason?:string;
     comment?:string;
-
 }
