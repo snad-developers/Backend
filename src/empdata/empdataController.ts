@@ -10,7 +10,12 @@ export class empdataController {
         try {
             const requestBody: Createempdata = request.payload as Createempdata
             const result = await new empdataService().create(requestBody);
-            return h.response(result).code(201);
+            // return h.response(result).code(201);
+            if(result && result.emailaddress == requestBody.emailaddress){
+                return h.response(JSON.stringify({ status: "success", message: "registered sucessfully",statuscode:200}));
+                }else{
+                    return h.response(JSON.stringify({ status: "faliure", message: result,statuscode:201}));
+                }
         } catch (error) {
             request.log("error", error);
             return Boom.badImplementation(JSON.stringify(error))
