@@ -33,7 +33,8 @@ export class empdataController {
     public async getById(request: Hapi.Request, h: Hapi.ResponseToolkit) {
         try {
             const id: number = +request.params.id;
-            const result = await new empdataService().getById(id);
+            const requestBody: Updateempdata = request.payload as Updateempdata;
+            const result = await new empdataService().update(requestBody, id);
             return h.response(result).code(200);
         } catch (error) {
             request.log("error", error);

@@ -26,7 +26,7 @@ const empdataRoutes = {
                 }
             },
             {
-                method: 'GET',
+                method: 'POST',
                 path: '/empdata/{id}',
                 handler: controller.getById,
                 options: {

@@ -32,7 +32,7 @@ export interface empdata {
     taxfilenumber:number;
     emergencynumber:number;
     effectivedate:string;
-    
+
     location:string;
     reportsto:string;
     payschedule:string;
@@ -52,6 +52,8 @@ export interface empdata {
     expirationdate:string;
     status:string;
     employementstatus:string;
+    jobeffectivedate:string;
+    compensationeffectivedate:string;
 }
 export interface Createempdata {
     
@@ -106,6 +108,8 @@ export interface Createempdata {
     expirationdate:string;
     status:string;
     employementstatus:string;
+    jobeffectivedate:string;
+    compensationeffectivedate:string;
 
 }
 
@@ -162,5 +166,7 @@ export interface Updateempdata {
     expirationdate?:string;
     status?:string;
     employementstatus?:string;
+    jobeffectivedate?:string;
+    compensationeffectivedate?:string;
 
 }
