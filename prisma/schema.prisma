@@ -42,16 +42,16 @@ model empdata {
     immigrationstatus        String @db.VarChar
     highestdegree           String @db.VarChar
     university              String @db.VarChar
-    contactnumber           Int    @db.Integer
+    contactnumber            Int    @db.Integer 
     addressline1            String @db.VarChar
     addressline2            String @db.VarChar
     city                    String @db.VarChar
     state                   String @db.VarChar
-    zipcode                 Int    @db.Integer
+    zipcode                   Int    @db.Integer 
     country                 String @db.VarChar
     ssn                     String @db.VarChar
-    taxfilenumber           Int    @db.Integer
-    emergencynumber         Int    @db.Integer
+    taxfilenumber             Int    @db.Integer 
+    emergencynumber           Int    @db.Integer 
     effectivedate           String @db.VarChar
     location                String @db.VarChar
     reportsto               String @db.VarChar
@@ -71,6 +71,9 @@ model empdata {
     issueddate              String @db.VarChar
     expirationdate          String @db.VarChar
     status                  String @db.VarChar
+    employementstatus       String @db.VarChar
+    jobeffectivedate        String @db.VarChar
+    compensationeffectivedate  String @db.VarChar
     payroll                 payrollexpense []
     }
 
@@ -229,6 +232,7 @@ model education{
   degreestartdate    String  @db.VarChar
   degreeenddate      String  @db.VarChar
   id         Int     @id @default(autoincrement())
+  employeeid         Int     @db.Integer
 
 }
 model visainformation{
@@ -239,4 +243,26 @@ model visainformation{
   expirationdate   String  @db.VarChar
   status           String  @db.VarChar
   id       Int     @id @default(autoincrement())
+  employeeid       Int     @db.Integer
+}
+model jobinformation{
+  effectivedate     String  @db.VarChar
+  location          String  @db.VarChar
+  clientname        String  @db.VarChar
+  jobtitle          String  @db.VarChar
+  reportsto         String  @db.VarChar
+  id       Int     @id @default(autoincrement())
+  employeeid          Int     @db.Integer
+}
+model compensation{
+  effectivedate        String  @db.VarChar
+  payschedule          String  @db.VarChar
+  paytype              String  @db.VarChar
+  payrate              String  @db.VarChar
+  overtime             String  @db.VarChar
+  overtimerate         String  @db.VarChar
+  changereason         String  @db.VarChar
+  comment              String  @db.VarChar
+  id       Int     @id @default(autoincrement())
+  employeeid           Int     @db.Integer
 }

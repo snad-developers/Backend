@@ -1,17 +1,17 @@
-import { empdataController } from "./empdataController";
+import { jobinformationController } from "./jobinformationController";
 import * as Hapi from "@hapi/hapi";
 
 // create instance of controller
-const controller = new empdataController();
+const controller = new jobinformationController();
 
 // configure the routes
-const empdataRoutes = {
-    name: "empdata",
+const jobinformationRoutes = {
+    name: "jobinformation",
     register: async (server: Hapi.Server) => {
         server.route([
             {
                 method: 'POST',
-                path: '/empdata',
+                path: '/jobinformation',
                 handler: controller.create,
                 options: {
                     tags: ['api']
@@ -19,15 +19,15 @@ const empdataRoutes = {
             },
             {
                 method: 'GET',
-                path: '/empdata',
+                path: '/jobinformation',
                 handler: controller.getAll,
                 options: {
                     tags: ['api']
                 }
             },
             {
-                method: 'POST',
-                path: '/empdata/{id}',
+                method: 'GET',
+                path: '/jobinformation/{id}',
                 handler: controller.getById,
                 options: {
                     tags: ['api']
@@ -35,7 +35,7 @@ const empdataRoutes = {
             },
             {
                 method: 'PUT',
-                path: '/empdata/{id}',
+                path: '/jobinformation/{id}',
                 handler: controller.update,
                 options: {
                     tags: ['api']
@@ -43,7 +43,7 @@ const empdataRoutes = {
             },
             {
                 method: 'DELETE',
-                path: '/empdata/{id}',
+                path: '/jobinformation/{id}',
                 handler: controller.delete,
                 options: {
                     tags: ['api']
@@ -51,6 +51,6 @@ const empdataRoutes = {
             }
         ]);
     }
-}
+ }
 
-export default empdataRoutes;
+export default jobinformationRoutes;

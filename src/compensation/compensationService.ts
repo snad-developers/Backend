@@ -1,7 +1,7 @@
-import { PrismaClient, empdata } from "@prisma/client"
-import { Createempdata, Updateempdata } from "./empdata";
+import { PrismaClient, compensation } from "@prisma/client"
+import {  Createcompensation, Updatecompensation} from "./compensation";
 
-export class empdataService {
+export class compensationService {
 
     private prisma: PrismaClient;
 
@@ -12,11 +12,11 @@ export class empdataService {
 
     }
 
-    public async create(theDto: Createempdata): Promise<empdata> {
+    public async create(theDto: Createcompensation): Promise<compensation> {
 
         try {
 
-            return await this.prisma.empdata.create({
+            return await this.prisma.compensation.create({
                 data: {
                     ...theDto
                 }
@@ -33,16 +33,15 @@ export class empdataService {
 
     }
 
-    public async getById(id: number): Promise<empdata> {
+    public async getById(id: number): Promise<compensation> {
 
         try {
 
-            return await this.prisma.empdata.findUnique({
+            return await this.prisma.compensation.findUnique({
                 where: {
                     id
                 }
             });
-            
 
         } catch (error) {
             console.log(error);
@@ -55,11 +54,11 @@ export class empdataService {
 
     }
 
-    public async getAll(): Promise<empdata[]> {
+    public async getAll(): Promise<compensation[]> {
 
         try {
 
-            return await this.prisma.empdata.findMany();
+            return await this.prisma.compensation.findMany();
 
         } catch (error) {
             console.log(error);
@@ -72,11 +71,11 @@ export class empdataService {
 
     }
 
-    public async update(theDto: Updateempdata, id: number): Promise<empdata> {
+    public async update(theDto: Updatecompensation, id: number): Promise<compensation> {
 
         try {
 
-            return await this.prisma.empdata.update({
+            return await this.prisma.compensation.update({
                 where: {
                     id: id
                 },
@@ -96,11 +95,11 @@ export class empdataService {
 
     }
 
-    public async delete(id: number): Promise<empdata> {
+    public async delete(id: number): Promise<compensation> {
 
         try {
 
-            return await this.prisma.empdata.delete({
+            return await this.prisma.compensation.delete({
                 where: {
                     id
                 }
@@ -120,7 +119,7 @@ export class empdataService {
     public async fileupload(theDto): Promise<any> {
 
         try {
-            return await this.prisma.empdata.createMany({
+            return await this.prisma.compensation.createMany({
                 data:theDto
                 })
 
@@ -131,24 +130,6 @@ export class empdataService {
         } finally {
 
             await this.prisma.$disconnect();
-
-        }
-
-    }
-
-    public async getCount(): Promise<number> {
-
-        try {
-
-            const response =  await this.prisma.empdata.aggregate({_count:{ empstatus:true},where:{empstatus:'Active'}});
-            return response._count.empstatus;
-
-        } catch (error) {
-            console.log(error);
-
-        } finally {
-            await this.prisma.$disconnect();
-
 
         }
 

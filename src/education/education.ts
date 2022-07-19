@@ -5,6 +5,7 @@ export interface education{
     gpa:string;
     degreestartdate:string;
     degreeenddate:string;
+    employeeid:number;
 }
 export interface Createeducation{
     universityname:string;
@@ -13,6 +14,7 @@ export interface Createeducation{
     gpa:string;
     degreestartdate:string;
     degreeenddate:string;
+    employeeid:number;
 }
 export interface Updateeducation{
     universityname?:string;
@@ -21,4 +23,5 @@ export interface Updateeducation{
     gpa?:string;
     degreestartdate?:string;
     degreeenddate?:string;
+    employeeid?:number;
 }

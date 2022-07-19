@@ -1,7 +1,7 @@
-import { PrismaClient, empdata } from "@prisma/client"
-import { Createempdata, Updateempdata } from "./empdata";
+import { PrismaClient,jobinformation } from "@prisma/client"
+import {  Createjobinformation, Updatejobinformation} from "./jobinformation";
 
-export class empdataService {
+export class jobinformationService {
 
     private prisma: PrismaClient;
 
@@ -12,11 +12,11 @@ export class empdataService {
 
     }
 
-    public async create(theDto: Createempdata): Promise<empdata> {
+    public async create(theDto: Createjobinformation): Promise<jobinformation> {
 
         try {
 
-            return await this.prisma.empdata.create({
+            return await this.prisma.jobinformation.create({
                 data: {
                     ...theDto
                 }
@@ -33,16 +33,15 @@ export class empdataService {
 
     }
 
-    public async getById(id: number): Promise<empdata> {
+    public async getById(id: number): Promise<jobinformation> {
 
         try {
 
-            return await this.prisma.empdata.findUnique({
+            return await this.prisma.jobinformation.findUnique({
                 where: {
                     id
                 }
             });
-            
 
         } catch (error) {
             console.log(error);
@@ -55,11 +54,11 @@ export class empdataService {
 
     }
 
-    public async getAll(): Promise<empdata[]> {
+    public async getAll(): Promise<jobinformation[]> {
 
         try {
 
-            return await this.prisma.empdata.findMany();
+            return await this.prisma.jobinformation.findMany();
 
         } catch (error) {
             console.log(error);
@@ -72,11 +71,11 @@ export class empdataService {
 
     }
 
-    public async update(theDto: Updateempdata, id: number): Promise<empdata> {
+    public async update(theDto: Updatejobinformation, id: number): Promise<jobinformation> {
 
         try {
 
-            return await this.prisma.empdata.update({
+            return await this.prisma.jobinformation.update({
                 where: {
                     id: id
                 },
@@ -96,11 +95,11 @@ export class empdataService {
 
     }
 
-    public async delete(id: number): Promise<empdata> {
+    public async delete(id: number): Promise<jobinformation> {
 
         try {
 
-            return await this.prisma.empdata.delete({
+            return await this.prisma.jobinformation.delete({
                 where: {
                     id
                 }
@@ -120,7 +119,7 @@ export class empdataService {
     public async fileupload(theDto): Promise<any> {
 
         try {
-            return await this.prisma.empdata.createMany({
+            return await this.prisma.jobinformation.createMany({
                 data:theDto
                 })
 
@@ -131,24 +130,6 @@ export class empdataService {
         } finally {
 
             await this.prisma.$disconnect();
-
-        }
-
-    }
-
-    public async getCount(): Promise<number> {
-
-        try {
-
-            const response =  await this.prisma.empdata.aggregate({_count:{ empstatus:true},where:{empstatus:'Active'}});
-            return response._count.empstatus;
-
-        } catch (error) {
-            console.log(error);
-
-        } finally {
-            await this.prisma.$disconnect();
-
 
         }
 

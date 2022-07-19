@@ -15,6 +15,8 @@ import rolesRoutes from "./roles/rolesRoutes";
 import expensesRoutes from "./expenses/expensesRoutes";
 import educationRoutes from "./education/educationRoutes";
 import visainformationRoutes from "./visainformation/visainformationRoutes";
+import jobinformationRoutes from "./jobinformation/jobinformationRoutes";
+import compensationRoutes from "./compensation/compensationRoutes";
 import * as HapiSwagger from "../node_modules/hapi-swagger";
 import * as Inert from "@hapi/inert";
 import * as Vision from "@hapi/vision";
@@ -97,6 +99,8 @@ class App {
             expensesRoutes,
             educationRoutes,
             visainformationRoutes,
+            jobinformationRoutes,
+            compensationRoutes,
             
     
 
