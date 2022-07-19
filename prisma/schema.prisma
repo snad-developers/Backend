@@ -71,6 +71,7 @@ model empdata {
     issueddate              String @db.VarChar
     expirationdate          String @db.VarChar
     status                  String @db.VarChar
+    employementstatus       String @db.VarChar
     payroll                 payrollexpense []
     }
 
@@ -238,5 +239,24 @@ model visainformation{
   issueddate       String  @db.VarChar
   expirationdate   String  @db.VarChar
   status           String  @db.VarChar
+  id       Int     @id @default(autoincrement())
+}
+model jobinformation{
+  effectivedate     String  @db.VarChar
+  location          String  @db.VarChar
+  clientname        String  @db.VarChar
+  jobtitle          String  @db.VarChar
+  reportsto         String  @db.VarChar
+  id       Int     @id @default(autoincrement())
+}
+model compensation{
+  effectivedate        String  @db.VarChar
+  payschedule          String  @db.VarChar
+  paytype              String  @db.VarChar
+  payrate              String  @db.VarChar
+  overtime             String  @db.VarChar
+  overtimerate         String  @db.VarChar
+  changereason         String  @db.VarChar
+  comment              String  @db.VarChar
   id       Int     @id @default(autoincrement())
 }
