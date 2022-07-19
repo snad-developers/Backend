@@ -5,6 +5,7 @@ export interface visainformation{
     issueddate:string;
     expirationdate:string;
     status:string;
+    employeeid:number;
 }
 export interface createvisainformation{
     date:string;
@@ -13,6 +14,7 @@ export interface createvisainformation{
     issueddate:string;
     expirationdate:string;
     status:string;
+    employeeid:number;
 
 }
 export interface updatevisainformation{
@@ -22,4 +24,5 @@ export interface updatevisainformation{
     issueddate?:string;
     expirationdate?:string;
     status?:string;
+    employeeid?:number;
 }

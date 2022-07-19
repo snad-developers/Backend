@@ -38,8 +38,14 @@ export class empdataController {
     public async getById(request: Hapi.Request, h: Hapi.ResponseToolkit) {
         try {
             const id: number = +request.params.id;
-            const result = await new empdataService().getById(id);
-            return h.response(result).code(200);
+            const requestBody: Updateempdata = request.payload as Updateempdata;
+            const result = await new empdataService().update(requestBody, id);
+            if(result){
+                return h.response(JSON.stringify({ status: "success", message: "Updated sucessfully",statuscode:200}));
+                }else{
+                    return h.response(JSON.stringify({ status: "faliure", message: "Failure",statuscode:201}));
+                }
+           // return h.response(result).code(200);
         } catch (error) {
             request.log("error", error);
             return Boom.badImplementation(JSON.stringify(error))

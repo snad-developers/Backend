@@ -4,6 +4,7 @@ export interface jobinformation{
     clientname:string;
     jobtitle:string;
     reportsto:string;
+    employeeid:number;
 }
 export interface Createjobinformation{
     effectivedate:string;
@@ -11,6 +12,7 @@ export interface Createjobinformation{
     clientname:string;
     jobtitle:string;
     reportsto:string;
+    employeeid:number;
 }
 export interface Updatejobinformation{
     effectivedate?:string;
@@ -18,4 +20,5 @@ export interface Updatejobinformation{
     clientname?:string;
     jobtitle?:string;
     reportsto?:string;
+    employeeid?:number;
 }
