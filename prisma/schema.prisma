@@ -42,16 +42,16 @@ model empdata {
     immigrationstatus        String @db.VarChar
     highestdegree           String @db.VarChar
     university              String @db.VarChar
-    contactnumber            BigInt    @db.BigInt 
+    contactnumber            Int    @db.Integer 
     addressline1            String @db.VarChar
     addressline2            String @db.VarChar
     city                    String @db.VarChar
     state                   String @db.VarChar
-    zipcode                   BigInt    @db.BigInt 
+    zipcode                   Int    @db.Integer 
     country                 String @db.VarChar
     ssn                     String @db.VarChar
-    taxfilenumber             BigInt    @db.BigInt 
-    emergencynumber           BigInt    @db.BigInt 
+    taxfilenumber             Int    @db.Integer 
+    emergencynumber           Int    @db.Integer 
     effectivedate           String @db.VarChar
     location                String @db.VarChar
     reportsto               String @db.VarChar

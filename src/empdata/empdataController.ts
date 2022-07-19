@@ -40,7 +40,12 @@ export class empdataController {
             const id: number = +request.params.id;
             const requestBody: Updateempdata = request.payload as Updateempdata;
             const result = await new empdataService().update(requestBody, id);
-            return h.response(result).code(200);
+            if(result){
+                return h.response(JSON.stringify({ status: "success", message: "Updated sucessfully",statuscode:200}));
+                }else{
+                    return h.response(JSON.stringify({ status: "faliure", message: "Failure",statuscode:201}));
+                }
+           // return h.response(result).code(200);
         } catch (error) {
             request.log("error", error);
             return Boom.badImplementation(JSON.stringify(error))
