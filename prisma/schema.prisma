@@ -74,7 +74,7 @@ model empdata {
     employementstatus       String @db.VarChar
     jobeffectivedate        String @db.VarChar
     compensationeffectivedate  String @db.VarChar
-    payroll                 payrollexpense []
+   
     }
 
 model reg {
@@ -156,7 +156,7 @@ model payrollexpense {
     updatedby         Int       @db.Integer
     updateddate       String    @db.VarChar
     id                 Int     @id @default(autoincrement())
-    employee          empdata  @relation(fields: [employeeid], references: [employeeid])
+
     employeeid        Int       @db.Integer
 }
 
