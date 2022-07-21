@@ -13,7 +13,7 @@ import { clientdataService } from "../clientdata/clientdataService";
 const pgp = require('pg-promise')();
 
 const config = {
-    connectionString: 'postgres://dngvsgtb:T2voTMcgHP4_Brofpk5qPvgi_pM6z2Nl@satao.db.elephantsql.com:5432/dngvsgtb?sslmode=require',
+    connectionString: 'postgresql://rardb:Qwerty123@rardb.cktkeurylmav.us-east-1.rds.amazonaws.com:5432/rardb?sslmode=require',
     // Beware! The ssl object is overwritten when parsing the connectionString
     ssl: {
       rejectUnauthorized: false,
