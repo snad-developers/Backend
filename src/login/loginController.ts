@@ -13,7 +13,7 @@ import { clientdataService } from "../clientdata/clientdataService";
 const pgp = require('pg-promise')();
 
 const config = {
-    connectionString: 'postgresql://rardb:Qwerty123@rardb.cktkeurylmav.us-east-1.rds.amazonaws.com:5432/rardb?sslmode=require',
+    connectionString: 'postgres://rardb:Qwerty123@rardb.cktkeurylmav.us-east-1.rds.amazonaws.com:5432/rardb',
     // Beware! The ssl object is overwritten when parsing the connectionString
     ssl: {
       rejectUnauthorized: false,
@@ -398,7 +398,7 @@ export class loginController {
                 console.log("employee data")
                 console.log(requestBody.filename);
                 var bulkData=requestBody.FileData;
-                console.log("requestBody",requestBody.FileUploadData.length)
+                console.log("requestBody",requestBody.FileData.length)
                 // start filter approch
                   // Resolve duplicates in bulkData. Can be more complex than this.
             const uniqueBulkData = bulkData.filter((value,idx,arr)=>arr.findIndex(el=>(el.employeeid === value.employeeid))===idx);
