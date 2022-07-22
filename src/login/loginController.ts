@@ -247,7 +247,7 @@ export class loginController {
 
             console.log(requestBody.filename);
             var bulkData=requestBody.FileData;
-            console.log("requestBody",requestBody.FileUploadData.length)
+            console.log("requestBody",requestBody.FileData.length)
             // start filter approch
               // Resolve duplicates in bulkData. Can be more complex than this.
         const uniqueBulkData = bulkData.filter((value,idx,arr)=>arr.findIndex(el=>(el.clientcode === value.clientcode))===idx);
@@ -320,7 +320,7 @@ export class loginController {
 
        console.log(requestBody.filename);
        var bulkData=requestBody.FileData;
-       console.log("requestBody",requestBody.FileUploadData.length)
+       console.log("requestBody",requestBody.FileData.length)
        // start filter approch
          // Resolve duplicates in bulkData. Can be more complex than this.
 //    const uniqueBulkData = bulkData.filter((value,idx,arr)=>arr.findIndex(el=>(el.employeeid === value.employeeid))===idx);
@@ -388,7 +388,91 @@ export class loginController {
             }
             if(requestBody.filename == "2"){
                 //console.log(requestBody.filename)
-            result = await new timesheetService().fileupload(requestBody.FileUploadData);
+           // result = await new timesheetService().fileupload(requestBody.FileUploadData);
+           console.log("timesheet data")
+
+           console.log(requestBody.filename);
+           var bulkData=requestBody.FileData;
+           console.log("requestBody",requestBody.FileData.length)
+           // start filter approch
+             // Resolve duplicates in bulkData. Can be more complex than this.
+    //    const uniqueBulkData = bulkData.filter((value,idx,arr)=>arr.findIndex(el=>(el.employeeid === value.employeeid))===idx);
+    //    console.log("uniqueBulkData",uniqueBulkData)
+       const employeeidArray = bulkData.map((item) => {return item.employeeid});
+       console.log("employeeidArray",employeeidArray)
+       const clientidArray = bulkData.map((item) => {return item.clientid});
+       console.log("clientidArray",clientidArray)
+      // console.log("inputNationalIds",inputNationalIds)
+    
+      const employeeidarrytostring = employeeidArray.join(',');
+      const clientidarrytostring = clientidArray.join(',');
+      const employeeidsquery="SELECT employeeid FROM empdata WHERE employeeid IN"+" ("+ employeeidarrytostring + ")";
+      console.log("employeeidsquery",employeeidsquery); 
+      const clientidsquery="SELECT clientcode FROM clientdata WHERE clientcode IN"+" ("+ clientidarrytostring + ")";
+       console.log("clientidsquery",clientidsquery); 
+       const employeelistDuplicates = await client
+       .query(employeeidsquery)
+       .then(res => {
+            return res.rows
+         })
+         console.log("employeelistDuplicates",employeelistDuplicates)
+         const clientlistDuplicates = await client
+         .query(clientidsquery)
+         .then(res => {
+              return res.rows
+           })
+       .catch(e => console.error(e.stack))
+       console.log("clientlistDuplicates",clientlistDuplicates)
+        if((employeelistDuplicates && employeelistDuplicates.length > 0) || (clientlistDuplicates && clientlistDuplicates.length > 0)){
+       const employeeduplicatesArray = employeelistDuplicates.map((item) => {return item.employeeid});
+       console.log("employeeduplicatesArray",employeeduplicatesArray)
+       const clientduplicatesArray = clientlistDuplicates.map((item) => {return item.clientcode});
+       console.log("clientduplicatesArray",clientduplicatesArray)
+       const employeedataToInsert = bulkData.filter((item) => employeeduplicatesArray.includes(item.employeeid));
+       console.log("employeedataToInsert",employeedataToInsert)
+       const clientdataToInsert = employeedataToInsert.filter((item) => clientduplicatesArray.includes(item.clientid));
+       console.log("clientdataToInsert",clientdataToInsert)
+       if(clientdataToInsert && clientdataToInsert.length > 0){
+       const columns = Object.keys(bulkData[0]).map((str) => str.trim());
+       console.log("columns",columns)
+       const setTable = new pgp.helpers.ColumnSet(columns , {table: 'timesheet'});
+       console.log("setTable",setTable)
+       const insert = pgp.helpers.insert(clientdataToInsert, setTable);
+       console.log("insert",insert)
+       var resultinserdata = await client
+       .query(insert)
+       .then(res => {
+       
+            return res.rowCount
+         })
+       .catch(e => console.error(e.stack))
+      
+       resultdata=bulkData.length - resultinserdata
+       console.log("resultdata",resultdata);
+    
+       result={ 
+           status: "success", 
+           message: `Successfully inserted ${resultinserdata} records. and rejected ${resultdata} records.Total ${bulkData.length} records`,
+           statuscode:200
+       }
+       console.log("result",result);
+       }else{
+          
+           result={ 
+               status: "Failure", 
+               message: `Failed to insert  records.`,
+               statuscode:201
+           }
+           console.log("result",result);
+       }
+    }else{
+       result={ 
+           status: "Failure", 
+           message: `Failed to insert  records.`,
+           statuscode:201
+       }
+       console.log("result",result);
+       }
             }
             if(requestBody.filename == "3"){
                // console.log(requestBody.filename)
@@ -473,7 +557,7 @@ export class loginController {
             result = await new imgexpService().fileupload(requestBody.FileUploadData);
             }
            // console.log(result)
-           if(requestBody.filename == "4" || requestBody.filename == "0" || requestBody.filename == "1"){
+           if(requestBody.filename == "4" || requestBody.filename == "0" || requestBody.filename == "1" || requestBody.filename == "2"){
             return h.response(JSON.stringify(result));
            }else{
             if(result){
