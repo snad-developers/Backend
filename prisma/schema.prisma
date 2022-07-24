@@ -225,8 +225,8 @@ model expenses {
   id         Int     @id @default(autoincrement())
 }
 model education{
-  universityname     String  @db.VarChar
-  degree             String  @db.VarChar
+  university     String  @db.VarChar
+  highestdegree             String  @db.VarChar
   specialization     String  @db.VarChar
   gpa                String  @db.VarChar
   degreestartdate    String  @db.VarChar
@@ -237,7 +237,7 @@ model education{
 }
 model visainformation{
   date             String  @db.VarChar
-  visatype         String  @db.VarChar
+  visastatus         String  @db.VarChar
   issuingcountry   String  @db.VarChar
   issueddate       String  @db.VarChar
   expirationdate   String  @db.VarChar

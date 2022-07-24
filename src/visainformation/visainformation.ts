@@ -9,7 +9,7 @@ export interface visainformation{
 }
 export interface createvisainformation{
     date:string;
-    visatype:string;
+    visastatus:string;
     issuingcountry:string;
     issueddate:string;
     expirationdate:string;
@@ -19,7 +19,7 @@ export interface createvisainformation{
 }
 export interface updatevisainformation{
     date?:string;
-    visatype?:string;
+    visastatus?:string;
     issuingcountry?:string;
     issueddate?:string;
     expirationdate?:string;

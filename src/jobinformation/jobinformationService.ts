@@ -12,7 +12,7 @@ export class jobinformationService {
 
     }
 
-    public async create(theDto: Createjobinformation): Promise<jobinformation> {
+    public async create(theDto): Promise<any> {
 
         try {
 

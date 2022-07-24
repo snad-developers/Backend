@@ -110,6 +110,7 @@ export interface Createempdata {
     employementstatus:string;
     jobeffectivedate:string;
     compensationeffectivedate:string;
+   
 
 }
 
@@ -168,5 +169,6 @@ export interface Updateempdata {
     employementstatus?:string;
     jobeffectivedate?:string;
     compensationeffectivedate?:string;
+   
 
 }

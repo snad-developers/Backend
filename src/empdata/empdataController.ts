@@ -1,6 +1,14 @@
 import * as Hapi from "@hapi/hapi";
 import { Createempdata,Updateempdata  } from "./empdata";
+import { Createeducation } from "../education/education";
+import { createvisainformation } from "../visainformation/visainformation";
+import { Createjobinformation } from "../jobinformation/jobinformation";
+import {  Createcompensation } from "../compensation/compensation";
 import { empdataService } from "./empdataService";
+import { visainformationService } from "../visainformation/visainformationService";
+import { educationService } from "../education/educationService";
+import { jobinformationService } from "../jobinformation/jobinformationService";
+import { compensationService } from "../compensation/compensationService";
 import Boom from "@hapi/boom";
 
 export class empdataController {
@@ -39,7 +47,20 @@ export class empdataController {
         try {
             const id: number = +request.params.id;
             const requestBody: Updateempdata = request.payload as Updateempdata;
+            console.log(requestBody)
+            const insertrequestBody:  Createempdata = request.payload as  Createempdata
+            console.log(requestBody)
+            const visainsertrequestBody:  Createempdata = request.payload as  Createempdata
+            console.log(requestBody)
+            const jobinsertrequestBody:  Createempdata = request.payload as  Createempdata
+            console.log(requestBody)
+            const compensationinsertrequestBody:  Createempdata = request.payload as  Createempdata
+            console.log(requestBody)
             const result = await new empdataService().update(requestBody, id);
+            const insertresult = await new educationService().create(insertrequestBody);
+            const visainsertresult = await new visainformationService().create(visainsertrequestBody);
+            const jobinsertresult = await new jobinformationService().create(jobinsertrequestBody);
+            const compensationinsertresult = await new compensationService().create(compensationinsertrequestBody);
             if(result){
                 return h.response(JSON.stringify({ status: "success", message: "Updated sucessfully",statuscode:200}));
                 }else{
