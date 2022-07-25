@@ -7,7 +7,7 @@ export interface compensation{
     overtimerate:string;
     changereason:string;
     comment:string;
-
+    employeeid:number;
 }
 export interface Createcompensation{
     effectivedate:string;
@@ -18,7 +18,7 @@ export interface Createcompensation{
     overtimerate:string;
     changereason:string;
     comment:string;
-
+    employeeid:number;
 }
 export interface Updatecompensation{
     effectivedate?:string;
@@ -29,4 +29,5 @@ export interface Updatecompensation{
     overtimerate?:string;
     changereason?:string;
     comment?:string;
+    employeeid?:number;
 }
