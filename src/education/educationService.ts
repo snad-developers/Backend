@@ -12,7 +12,7 @@ export class educationService {
 
     }
 
-    public async create(theDto: Createeducation): Promise<education> {
+    public async create(theDto): Promise<any> {
 
         try {
 

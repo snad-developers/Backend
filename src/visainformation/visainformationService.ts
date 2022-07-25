@@ -12,7 +12,7 @@ export class visainformationService {
 
     }
 
-    public async create(theDto: createvisainformation): Promise<visainformation> {
+    public async create(theDto): Promise<any> {
 
         try {
 

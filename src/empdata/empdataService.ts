@@ -2,6 +2,7 @@ import { PrismaClient, empdata } from "@prisma/client"
 import { Createempdata, Updateempdata } from "./empdata";
 
 export class empdataService {
+    
 
     private prisma: PrismaClient;
 
@@ -42,6 +43,7 @@ export class empdataService {
                     id
                 }
             });
+            
 
         } catch (error) {
             console.log(error);

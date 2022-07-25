@@ -11,7 +11,7 @@ export class compensationService {
 
     }
 
-    public async create(theDto: Createcompensation): Promise<compensation> {
+    public async create(theDto): Promise<any> {
 
         try {
 
