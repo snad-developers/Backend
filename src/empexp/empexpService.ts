@@ -1,5 +1,5 @@
 import { PrismaClient, empexp } from "@prisma/client"
-import { Createempexp, Updateempexp} from "./empexp";
+import { Createempexp, empexpdetails, Updateempexp} from "./empexp";
 
 export class empexpService {
 
@@ -160,6 +160,30 @@ export class empexpService {
                 data:theDto
                 })
 
+        } catch (error) {
+            
+            console.log(error);
+
+        } finally {
+
+            await this.prisma.$disconnect();
+
+        }
+
+    }
+
+    public async empexpdetails(dto: empexpdetails): Promise<any> {
+
+        try {
+            return await this.prisma.$queryRaw`SELECT e.employeeid,
+                                                        ed.expenses,
+                                                        e.expensedate,
+                                                        e.amount
+                                                FROM   expenses ed
+                                                        join empexp e
+                                                        ON e.expensecode = ed.expensecode
+                                                WHERE  e.employeeid = ${dto.empid}
+                                                ORDER  BY e.employeeid `
         } catch (error) {
             
             console.log(error);
