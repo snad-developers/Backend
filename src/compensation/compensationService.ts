@@ -1,6 +1,5 @@
 import { PrismaClient, compensation } from "@prisma/client"
 import {  Createcompensation, Updatecompensation} from "./compensation";
-
 export class compensationService {
 
     private prisma: PrismaClient;
