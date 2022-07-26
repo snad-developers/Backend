@@ -476,7 +476,92 @@ export class loginController {
             }
             if(requestBody.filename == "3"){
                // console.log(requestBody.filename)
-            result = await new mgmtexpService().fileupload(requestBody.FileUploadData);
+            // result = await new mgmtexpService().fileupload(requestBody.FileUploadData);
+            console.log("management expenses")
+
+            console.log(requestBody.filename);
+            var bulkData=requestBody.FileData;
+            console.log("requestBody",requestBody.FileData.length)
+            // start filter approch
+              // Resolve duplicates in bulkData. Can be more complex than this.
+     //    const uniqueBulkData = bulkData.filter((value,idx,arr)=>arr.findIndex(el=>(el.employeeid === value.employeeid))===idx);
+     //    console.log("uniqueBulkData",uniqueBulkData)
+        const employeeidArray = bulkData.map((item) => {return item.employeeid});
+        console.log("employeeidArray",employeeidArray)
+        const mgmtexpArray = bulkData.map((item) => {return item.expensecode});
+        console.log("mgmtexpArray",mgmtexpArray)
+       // console.log("inputNationalIds",inputNationalIds)
+     
+       const employeeidarrytostring = employeeidArray.join(',');
+       const mgmtexparrytostring = mgmtexpArray.join("','");
+       console.log("mgmtexparraytostring",mgmtexparrytostring);
+       const employeeidsquery="SELECT employeeid FROM empdata WHERE employeeid IN"+" ("+ employeeidarrytostring + ")";
+       console.log("employeeidsquery",employeeidsquery); 
+       const mgmtexpidsquery="SELECT expensecode FROM mgmtexp WHERE expensecode IN"+" ("+"'"+mgmtexparrytostring+"'" + ")";
+        console.log("mgmtexpidsquery",mgmtexpidsquery); 
+        const employeelistDuplicates = await client
+        .query(employeeidsquery)
+        .then(res => {
+             return res.rows
+          })
+          console.log("employeelistDuplicates",employeelistDuplicates)
+          const mgmtexplistDuplicates = await client
+          .query(mgmtexpidsquery)
+          .then(res => {
+               return res.rows
+            })
+        .catch(e => console.error(e.stack))
+        console.log("mgmtexplistDuplicates",mgmtexplistDuplicates)
+         if((employeelistDuplicates && employeelistDuplicates.length > 0) || (mgmtexplistDuplicates && mgmtexplistDuplicates.length > 0)){
+        const employeeduplicatesArray = employeelistDuplicates.map((item) => {return item.employeeid});
+        console.log("employeeduplicatesArray",employeeduplicatesArray)
+        const mgmtexpduplicatesArray = mgmtexplistDuplicates.map((item) => {return item.expensecode});
+        console.log("mgmtexpduplicatesArray",mgmtexpduplicatesArray)
+        const employeedataToInsert = bulkData.filter((item) => employeeduplicatesArray.includes(item.employeeid));
+        console.log("employeedataToInsert",employeedataToInsert)
+        const mgmtexpdataToInsert = employeedataToInsert.filter((item) => mgmtexpduplicatesArray.includes(item.expensecode));
+        console.log("dataToInsert",mgmtexpdataToInsert)
+        if(mgmtexpdataToInsert && mgmtexpdataToInsert.length > 0){
+        const columns = Object.keys(bulkData[0]).map((str) => str.trim());
+        console.log("columns",columns)
+        const setTable = new pgp.helpers.ColumnSet(columns , {table: 'mgmtexp'});
+        console.log("setTable",setTable)
+        const insert = pgp.helpers.insert(mgmtexpdataToInsert, setTable);
+        console.log("insert",insert)
+        var resultinserdata = await client
+        .query(insert)
+        .then(res => {
+        
+             return res.rowCount
+          })
+        .catch(e => console.error(e.stack))
+       
+        resultdata=bulkData.length - resultinserdata
+        console.log("resultdata",resultdata);
+     
+        result={ 
+            status: "success", 
+            message: `Successfully inserted ${resultinserdata} records. and rejected ${resultdata} records.Total ${bulkData.length} records`,
+            statuscode:200
+        }
+        console.log("result",result);
+        }else{
+           
+            result={ 
+                status: "Failure", 
+                message: `Failed to insert  records.`,
+                statuscode:201
+            }
+            console.log("result",result);
+        }
+     }else{
+        result={ 
+            status: "Failure", 
+            message: `Failed to insert  records.`,
+            statuscode:201
+        }
+        console.log("result",result);
+        }
             }
             if(requestBody.filename == "4"){
                 console.log("employee data")
@@ -557,7 +642,7 @@ export class loginController {
             result = await new imgexpService().fileupload(requestBody.FileUploadData);
             }
            // console.log(result)
-           if(requestBody.filename == "4" || requestBody.filename == "0" || requestBody.filename == "1" || requestBody.filename == "2"){
+           if(requestBody.filename == "4" || requestBody.filename == "0" || requestBody.filename == "1" || requestBody.filename == "2" || requestBody.filename == "3" ) {
             return h.response(JSON.stringify(result));
            }else{
             if(result){
