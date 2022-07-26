@@ -28,6 +28,17 @@ export class educationController {
             return Boom.badImplementation(JSON.stringify(error))
         }
     }
+    public async geteducation(request: Hapi.Request, h: Hapi.ResponseToolkit) {
+        try {
+            const requestBody: Createeducation = request.payload as Createeducation
+            const result = await new educationService().getbyID(requestBody);
+            console.log("result",result)
+            return h.response(result).code(200);
+        } catch (error) {
+            request.log("error", error);
+            return Boom.badImplementation(JSON.stringify(error))
+        }
+    }
 
 
     public async getById(request: Hapi.Request, h: Hapi.ResponseToolkit) {

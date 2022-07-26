@@ -28,6 +28,19 @@ export class compensationController {
             return Boom.badImplementation(JSON.stringify(error))
         }
     }
+    public async getcompensation(request: Hapi.Request, h: Hapi.ResponseToolkit) {
+        try {
+            const requestBody: Createcompensation = request.payload as Createcompensation
+            const result = await new compensationService().getbyID(requestBody);
+            console.log("result",result)
+            return h.response(result).code(200);
+        } catch (error) {
+            request.log("error", error);
+            return Boom.badImplementation(JSON.stringify(error))
+        }
+    }
+
+
 
 
     public async getById(request: Hapi.Request, h: Hapi.ResponseToolkit) {

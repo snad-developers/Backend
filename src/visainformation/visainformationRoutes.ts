@@ -26,6 +26,14 @@ const visainformationRoutes = {
                 }
             },
             {
+                method: 'POST',
+                path: '/getvisainformation',
+                handler: controller.getvisainformation,
+                options: {
+                    tags: ['api']
+                }
+            },
+            {
                 method: 'GET',
                 path: '/visainformation/{id}',
                 handler: controller.getById,
