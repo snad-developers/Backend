@@ -639,10 +639,96 @@ export class loginController {
             }
             if(requestBody.filename == "6"){
                // console.log(requestBody.filename)
-            result = await new imgexpService().fileupload(requestBody.FileUploadData);
+            // result = await new imgexpService().fileupload(requestBody.FileUploadData);
+            console.log("immigration expenses")
+
+            console.log(requestBody.filename);
+            var bulkData=requestBody.FileData;
+            console.log("requestBody",requestBody.FileData.length)
+            // start filter approch
+              // Resolve duplicates in bulkData. Can be more complex than this.
+     //    const uniqueBulkData = bulkData.filter((value,idx,arr)=>arr.findIndex(el=>(el.employeeid === value.employeeid))===idx);
+     //    console.log("uniqueBulkData",uniqueBulkData)
+        const employeeidArray = bulkData.map((item) => {return item.employeeid});
+        console.log("employeeidArray",employeeidArray)
+        const imgexpArray = bulkData.map((item) => {return item.expensescode});
+        console.log("imgexpArray",imgexpArray)
+       // console.log("inputNationalIds",inputNationalIds)
+     
+       const employeeidarrytostring = employeeidArray.join(',');
+       const imgexparrytostring = imgexpArray.join("','");
+       console.log("imgexparraytostring",imgexparrytostring);
+       const employeeidsquery="SELECT employeeid FROM empdata WHERE employeeid IN"+" ("+ employeeidarrytostring + ")";
+       console.log("employeeidsquery",employeeidsquery); 
+       const imgexpidsquery="SELECT expensescode FROM imgexp WHERE expensescode IN"+" ("+ "'"+ imgexparrytostring +"'" + ")";
+        console.log("imgexpidsquery",imgexpidsquery); 
+        const employeelistDuplicates = await client
+        .query(employeeidsquery)
+        .then(res => {
+             return res.rows
+          })
+          console.log("employeelistDuplicates",employeelistDuplicates)
+          const imgexplistDuplicates = await client
+          .query(imgexpidsquery)
+          .then(res => {
+               return res.rows
+            })
+        .catch(e => console.error(e.stack))
+        console.log("imgexplistDuplicates",imgexplistDuplicates)
+         if((employeelistDuplicates && employeelistDuplicates.length > 0) || (imgexplistDuplicates && imgexplistDuplicates.length > 0)){
+        const employeeduplicatesArray = employeelistDuplicates.map((item) => {return item.employeeid});
+        console.log("employeeduplicatesArray",employeeduplicatesArray)
+        const imgexpduplicatesArray = imgexplistDuplicates.map((item) => {return item.expensescode});
+        console.log("imgexpduplicatesArray",imgexpduplicatesArray)
+        const employeedataToInsert = bulkData.filter((item) => employeeduplicatesArray.includes(item.employeeid));
+        console.log("employeedataToInsert",employeedataToInsert)
+        const imgexpdataToInsert = employeedataToInsert.filter((item) => imgexpduplicatesArray.includes(item.expensescode));
+        console.log("dataToInsert",imgexpdataToInsert)
+        if(imgexpdataToInsert && imgexpdataToInsert.length > 0){
+        const columns = Object.keys(bulkData[0]).map((str) => str.trim());
+        console.log("columns",columns)
+        const setTable = new pgp.helpers.ColumnSet(columns , {table: 'imgexp'});
+        console.log("setTable",setTable)
+        const insert = pgp.helpers.insert(imgexpdataToInsert, setTable);
+        console.log("insert",insert)
+        var resultinserdata = await client
+        .query(insert)
+        .then(res => {
+        
+             return res.rowCount
+          })
+        .catch(e => console.error(e.stack))
+       
+        resultdata=bulkData.length - resultinserdata
+        console.log("resultdata",resultdata);
+     
+        result={ 
+            status: "success", 
+            message: `Successfully inserted ${resultinserdata} records. and rejected ${resultdata} records.Total ${bulkData.length} records`,
+            statuscode:200
+        }
+        console.log("result",result);
+        }else{
+           
+            result={ 
+                status: "Failure", 
+                message: `Failed to insert  records.`,
+                statuscode:201
+            }
+            console.log("result",result);
+        }
+     }else{
+        result={ 
+            status: "Failure", 
+            message: `Failed to insert  records.`,
+            statuscode:201
+        }
+        console.log("result",result);
+        }
+
             }
            // console.log(result)
-           if(requestBody.filename == "4" || requestBody.filename == "0" || requestBody.filename == "1" || requestBody.filename == "2" || requestBody.filename == "3" ) {
+           if(requestBody.filename == "4" || requestBody.filename == "0" || requestBody.filename == "1" || requestBody.filename == "2" || requestBody.filename == "3" || requestBody.filename == "6" ) {
             return h.response(JSON.stringify(result));
            }else{
             if(result){
