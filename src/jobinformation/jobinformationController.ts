@@ -28,6 +28,19 @@ export class jobinformationController {
             return Boom.badImplementation(JSON.stringify(error))
         }
     }
+    public async getjobinformation(request: Hapi.Request, h: Hapi.ResponseToolkit) {
+        try {
+            const requestBody: Createjobinformation = request.payload as Createjobinformation
+            const result = await new jobinformationService().getbyID(requestBody);
+            console.log("result",result)
+            return h.response(result).code(200);
+        } catch (error) {
+            request.log("error", error);
+            return Boom.badImplementation(JSON.stringify(error))
+        }
+    }
+
+
 
 
     public async getById(request: Hapi.Request, h: Hapi.ResponseToolkit) {

@@ -18,6 +18,14 @@ const jobinformationRoutes = {
                 }
             },
             {
+                method: 'POST',
+                path: '/getjobinformation',
+                handler: controller.getjobinformation,
+                options: {
+                    tags: ['api']
+                }
+            },
+            {
                 method: 'GET',
                 path: '/jobinformation',
                 handler: controller.getAll,

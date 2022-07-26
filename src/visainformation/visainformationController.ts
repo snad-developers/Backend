@@ -17,6 +17,17 @@ export class visainformationController {
         }
 
     }
+    public async getvisainformation(request: Hapi.Request, h: Hapi.ResponseToolkit) {
+        try {
+            const requestBody: createvisainformation  = request.payload as createvisainformation 
+            const result = await new visainformationService().getbyID(requestBody);
+            console.log("result",result)
+            return h.response(result).code(200);
+        } catch (error) {
+            request.log("error", error);
+            return Boom.badImplementation(JSON.stringify(error))
+        }
+    }
 
 
     public async getAll(request: Hapi.Request, h: Hapi.ResponseToolkit) {
@@ -28,6 +39,7 @@ export class visainformationController {
             return Boom.badImplementation(JSON.stringify(error))
         }
     }
+
 
 
     public async getById(request: Hapi.Request, h: Hapi.ResponseToolkit) {

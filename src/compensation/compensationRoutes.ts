@@ -18,6 +18,14 @@ const compensationRoutes = {
                 }
             },
             {
+                method: 'POST',
+                path: '/getcompensation',
+                handler: controller.getcompensation,
+                options: {
+                    tags: ['api']
+                }
+            },
+            {
                 method: 'GET',
                 path: '/compensation',
                 handler: controller.getAll,

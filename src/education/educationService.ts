@@ -71,6 +71,23 @@ export class educationService {
 
     }
 
+    public async getbyID(theDto: Createeducation): Promise<any> {
+
+        try {
+            return await this.prisma.$queryRaw`select * from education where employeeid = ${theDto.employeeid}`
+           
+
+        } catch (error) {
+            console.log(error);
+
+        } finally {
+            await this.prisma.$disconnect();
+
+
+        }
+
+    }
+
     public async update(theDto: Updateeducation, id: number): Promise<education> {
 
         try {
