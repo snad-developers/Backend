@@ -48,3 +48,7 @@ export interface Updateempexp {
     
     
 }
+
+export interface empexpdetails {   
+    empid:number;
+}

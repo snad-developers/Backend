@@ -1,5 +1,5 @@
 import * as Hapi from "@hapi/hapi";
-import { Createempexp, Updateempexp } from "./empexp";
+import { Createempexp, empexpdetails, Updateempexp } from "./empexp";
 import { empexpService } from "./empexpService";
 import Boom from "@hapi/boom";
 
@@ -88,6 +88,33 @@ export class empexpController {
         }
         } catch (error) {
             console.log("error", error);
+            return Boom.badImplementation(JSON.stringify(error))
+        }
+
+
+    }
+
+    public async expdetails(request: Hapi.Request, h: Hapi.ResponseToolkit) {
+        try {
+            const requestBody: empexpdetails = request.payload as empexpdetails;
+            const result = await new empexpService().empexpdetails(requestBody);
+            for (var i=0; i<result.length; i++){
+                result[i].employeeid=result[i].employeeid.toString()
+                result[i].amount=result[i].amount.toString();
+               
+            }
+            if(result){
+            
+            
+                return h.response(JSON.stringify({ status: "success",statuscode:200,result:result}));
+          
+        }else{
+            return h.response(JSON.stringify({ status: "Failure", message: "Data Not Available" ,statuscode:201}));
+        }
+
+            
+        } catch (error) {
+            request.log("error", error);
             return Boom.badImplementation(JSON.stringify(error))
         }
 

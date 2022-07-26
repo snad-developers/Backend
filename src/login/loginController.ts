@@ -247,6 +247,7 @@ export class loginController {
 
             console.log(requestBody.filename);
             var bulkData=requestBody.FileData;
+            var duplicaterecords;
             console.log("requestBody",requestBody.FileData.length)
             // start filter approch
               // Resolve duplicates in bulkData. Can be more complex than this.
@@ -271,7 +272,9 @@ export class loginController {
         console.log("duplicatesArray",duplicatesArray)
         const dataToInsert = uniqueBulkData.filter((item) => !duplicatesArray.includes(item.clientcode));
         console.log("dataToInsert",dataToInsert)
+        duplicaterecords=uniqueBulkData;
         if(dataToInsert && dataToInsert.length > 0){
+        duplicaterecords=uniqueBulkData.filter((item) => duplicatesArray.includes(item.clientcode));
         const columns = Object.keys(bulkData[0]).map((str) => str.trim());
         console.log("columns",columns)
         const setTable = new pgp.helpers.ColumnSet(columns , {table: 'clientdata'});
@@ -292,7 +295,8 @@ export class loginController {
         result={ 
             status: "success", 
             message: `Successfully inserted ${resultinserdata} records. and rejected ${resultdata} records.Total ${bulkData.length} records`,
-            statuscode:200
+            statuscode:200,
+            duplicaterecords:duplicaterecords
         }
         console.log("result",result);
         }else{
@@ -300,7 +304,8 @@ export class loginController {
             result={ 
                 status: "Failure", 
                 message: `Failed to insert  records.`,
-                statuscode:201
+                statuscode:201,
+                duplicaterecords:duplicaterecords
             }
             console.log("result",result);
         }
@@ -320,6 +325,7 @@ export class loginController {
 
        console.log(requestBody.filename);
        var bulkData=requestBody.FileData;
+       var duplicaterecords;
        console.log("requestBody",requestBody.FileData.length)
        // start filter approch
          // Resolve duplicates in bulkData. Can be more complex than this.
@@ -344,7 +350,9 @@ export class loginController {
    console.log("duplicatesArray",duplicatesArray)
    const dataToInsert = bulkData.filter((item) => duplicatesArray.includes(item.employeeid));
    console.log("dataToInsert",dataToInsert)
+   duplicaterecords=inputNationalIds;
    if(dataToInsert && dataToInsert.length > 0){
+    duplicaterecords=bulkData.filter((item) => !duplicatesArray.includes(item.employeeid));
    const columns = Object.keys(bulkData[0]).map((str) => str.trim());
    console.log("columns",columns)
    const setTable = new pgp.helpers.ColumnSet(columns , {table: 'payrollexpense'});
@@ -365,7 +373,8 @@ export class loginController {
    result={ 
        status: "success", 
        message: `Successfully inserted ${resultinserdata} records. and rejected ${resultdata} records.Total ${bulkData.length} records`,
-       statuscode:200
+       statuscode:200,
+       duplicaterecords:duplicaterecords
    }
    console.log("result",result);
    }else{
@@ -373,7 +382,8 @@ export class loginController {
        result={ 
            status: "Failure", 
            message: `Failed to insert  records.`,
-           statuscode:201
+           statuscode:201,
+           duplicaterecords:duplicaterecords
        }
        console.log("result",result);
    }
@@ -393,6 +403,8 @@ export class loginController {
 
            console.log(requestBody.filename);
            var bulkData=requestBody.FileData;
+           console.log("bulkData",bulkData)
+           var duplicaterecords;
            console.log("requestBody",requestBody.FileData.length)
            // start filter approch
              // Resolve duplicates in bulkData. Can be more complex than this.
@@ -432,7 +444,9 @@ export class loginController {
        console.log("employeedataToInsert",employeedataToInsert)
        const clientdataToInsert = employeedataToInsert.filter((item) => clientduplicatesArray.includes(item.clientid));
        console.log("clientdataToInsert",clientdataToInsert)
+       duplicaterecords=employeeidArray;
        if(clientdataToInsert && clientdataToInsert.length > 0){
+        duplicaterecords=employeedataToInsert.filter((item) => clientduplicatesArray.includes(item.clientid,item.employeeid));
        const columns = Object.keys(bulkData[0]).map((str) => str.trim());
        console.log("columns",columns)
        const setTable = new pgp.helpers.ColumnSet(columns , {table: 'timesheet'});
@@ -476,12 +490,98 @@ export class loginController {
             }
             if(requestBody.filename == "3"){
                // console.log(requestBody.filename)
-            result = await new mgmtexpService().fileupload(requestBody.FileUploadData);
+            // result = await new mgmtexpService().fileupload(requestBody.FileUploadData);
+            console.log("management expenses")
+
+            console.log(requestBody.filename);
+            var bulkData=requestBody.FileData;
+            console.log("requestBody",requestBody.FileData.length)
+            // start filter approch
+              // Resolve duplicates in bulkData. Can be more complex than this.
+     //    const uniqueBulkData = bulkData.filter((value,idx,arr)=>arr.findIndex(el=>(el.employeeid === value.employeeid))===idx);
+     //    console.log("uniqueBulkData",uniqueBulkData)
+        const employeeidArray = bulkData.map((item) => {return item.employeeid});
+        console.log("employeeidArray",employeeidArray)
+        const mgmtexpArray = bulkData.map((item) => {return item.expensecode});
+        console.log("mgmtexpArray",mgmtexpArray)
+       // console.log("inputNationalIds",inputNationalIds)
+     
+       const employeeidarrytostring = employeeidArray.join(',');
+       const mgmtexparrytostring = mgmtexpArray.join("','");
+       console.log("mgmtexparraytostring",mgmtexparrytostring);
+       const employeeidsquery="SELECT employeeid FROM empdata WHERE employeeid IN"+" ("+ employeeidarrytostring + ")";
+       console.log("employeeidsquery",employeeidsquery); 
+       const mgmtexpidsquery="SELECT expensecode FROM mgmtexp WHERE expensecode IN"+" ("+"'"+mgmtexparrytostring+"'" + ")";
+        console.log("mgmtexpidsquery",mgmtexpidsquery); 
+        const employeelistDuplicates = await client
+        .query(employeeidsquery)
+        .then(res => {
+             return res.rows
+          })
+          console.log("employeelistDuplicates",employeelistDuplicates)
+          const mgmtexplistDuplicates = await client
+          .query(mgmtexpidsquery)
+          .then(res => {
+               return res.rows
+            })
+        .catch(e => console.error(e.stack))
+        console.log("mgmtexplistDuplicates",mgmtexplistDuplicates)
+         if((employeelistDuplicates && employeelistDuplicates.length > 0) || (mgmtexplistDuplicates && mgmtexplistDuplicates.length > 0)){
+        const employeeduplicatesArray = employeelistDuplicates.map((item) => {return item.employeeid});
+        console.log("employeeduplicatesArray",employeeduplicatesArray)
+        const mgmtexpduplicatesArray = mgmtexplistDuplicates.map((item) => {return item.expensecode});
+        console.log("mgmtexpduplicatesArray",mgmtexpduplicatesArray)
+        const employeedataToInsert = bulkData.filter((item) => employeeduplicatesArray.includes(item.employeeid));
+        console.log("employeedataToInsert",employeedataToInsert)
+        const mgmtexpdataToInsert = employeedataToInsert.filter((item) => mgmtexpduplicatesArray.includes(item.expensecode));
+        console.log("dataToInsert",mgmtexpdataToInsert)
+        if(mgmtexpdataToInsert && mgmtexpdataToInsert.length > 0){
+        const columns = Object.keys(bulkData[0]).map((str) => str.trim());
+        console.log("columns",columns)
+        const setTable = new pgp.helpers.ColumnSet(columns , {table: 'mgmtexp'});
+        console.log("setTable",setTable)
+        const insert = pgp.helpers.insert(mgmtexpdataToInsert, setTable);
+        console.log("insert",insert)
+        var resultinserdata = await client
+        .query(insert)
+        .then(res => {
+        
+             return res.rowCount
+          })
+        .catch(e => console.error(e.stack))
+       
+        resultdata=bulkData.length - resultinserdata
+        console.log("resultdata",resultdata);
+     
+        result={ 
+            status: "success", 
+            message: `Successfully inserted ${resultinserdata} records. and rejected ${resultdata} records.Total ${bulkData.length} records`,
+            statuscode:200
+        }
+        console.log("result",result);
+        }else{
+           
+            result={ 
+                status: "Failure", 
+                message: `Failed to insert  records.`,
+                statuscode:201
+            }
+            console.log("result",result);
+        }
+     }else{
+        result={ 
+            status: "Failure", 
+            message: `Failed to insert  records.`,
+            statuscode:201
+        }
+        console.log("result",result);
+        }
             }
             if(requestBody.filename == "4"){
                 console.log("employee data")
                 console.log(requestBody.filename);
                 var bulkData=requestBody.FileData;
+                var duplicaterecords;
                 console.log("requestBody",requestBody.FileData.length)
                 // start filter approch
                   // Resolve duplicates in bulkData. Can be more complex than this.
@@ -506,7 +606,9 @@ export class loginController {
             console.log("duplicatesArray",duplicatesArray)
             const dataToInsert = uniqueBulkData.filter((item) => !duplicatesArray.includes(item.employeeid));
             console.log("dataToInsert",dataToInsert)
+            duplicaterecords=uniqueBulkData;
             if(dataToInsert && dataToInsert.length > 0){
+            duplicaterecords = uniqueBulkData.filter((item) => duplicatesArray.includes(item.employeeid));
             const columns = Object.keys(bulkData[0]).map((str) => str.trim());
             console.log("columns",columns)
             const setTable = new pgp.helpers.ColumnSet(columns , {table: 'empdata'});
@@ -527,7 +629,8 @@ export class loginController {
             result={ 
                 status: "success", 
                 message: `Successfully inserted ${resultinserdata} records. and rejected ${resultdata} records.Total ${bulkData.length} records`,
-                statuscode:200
+                statuscode:200,
+                duplicaterecords:duplicaterecords
             }
             console.log("result",result);
             }else{
@@ -535,7 +638,8 @@ export class loginController {
                 result={ 
                     status: "Failure", 
                     message: `Failed to insert  records.`,
-                    statuscode:201
+                    statuscode:201,
+                    duplicaterecords:duplicaterecords
                 }
                 console.log("result",result);
             }
@@ -554,10 +658,96 @@ export class loginController {
             }
             if(requestBody.filename == "6"){
                // console.log(requestBody.filename)
-            result = await new imgexpService().fileupload(requestBody.FileUploadData);
+            // result = await new imgexpService().fileupload(requestBody.FileUploadData);
+            console.log("immigration expenses")
+
+            console.log(requestBody.filename);
+            var bulkData=requestBody.FileData;
+            console.log("requestBody",requestBody.FileData.length)
+            // start filter approch
+              // Resolve duplicates in bulkData. Can be more complex than this.
+     //    const uniqueBulkData = bulkData.filter((value,idx,arr)=>arr.findIndex(el=>(el.employeeid === value.employeeid))===idx);
+     //    console.log("uniqueBulkData",uniqueBulkData)
+        const employeeidArray = bulkData.map((item) => {return item.employeeid});
+        console.log("employeeidArray",employeeidArray)
+        const imgexpArray = bulkData.map((item) => {return item.expensescode});
+        console.log("imgexpArray",imgexpArray)
+       // console.log("inputNationalIds",inputNationalIds)
+     
+       const employeeidarrytostring = employeeidArray.join(',');
+       const imgexparrytostring = imgexpArray.join("','");
+       console.log("imgexparraytostring",imgexparrytostring);
+       const employeeidsquery="SELECT employeeid FROM empdata WHERE employeeid IN"+" ("+ employeeidarrytostring + ")";
+       console.log("employeeidsquery",employeeidsquery); 
+       const imgexpidsquery="SELECT expensescode FROM imgexp WHERE expensescode IN"+" ("+ "'"+ imgexparrytostring +"'" + ")";
+        console.log("imgexpidsquery",imgexpidsquery); 
+        const employeelistDuplicates = await client
+        .query(employeeidsquery)
+        .then(res => {
+             return res.rows
+          })
+          console.log("employeelistDuplicates",employeelistDuplicates)
+          const imgexplistDuplicates = await client
+          .query(imgexpidsquery)
+          .then(res => {
+               return res.rows
+            })
+        .catch(e => console.error(e.stack))
+        console.log("imgexplistDuplicates",imgexplistDuplicates)
+         if((employeelistDuplicates && employeelistDuplicates.length > 0) || (imgexplistDuplicates && imgexplistDuplicates.length > 0)){
+        const employeeduplicatesArray = employeelistDuplicates.map((item) => {return item.employeeid});
+        console.log("employeeduplicatesArray",employeeduplicatesArray)
+        const imgexpduplicatesArray = imgexplistDuplicates.map((item) => {return item.expensescode});
+        console.log("imgexpduplicatesArray",imgexpduplicatesArray)
+        const employeedataToInsert = bulkData.filter((item) => employeeduplicatesArray.includes(item.employeeid));
+        console.log("employeedataToInsert",employeedataToInsert)
+        const imgexpdataToInsert = employeedataToInsert.filter((item) => imgexpduplicatesArray.includes(item.expensescode));
+        console.log("dataToInsert",imgexpdataToInsert)
+        if(imgexpdataToInsert && imgexpdataToInsert.length > 0){
+        const columns = Object.keys(bulkData[0]).map((str) => str.trim());
+        console.log("columns",columns)
+        const setTable = new pgp.helpers.ColumnSet(columns , {table: 'imgexp'});
+        console.log("setTable",setTable)
+        const insert = pgp.helpers.insert(imgexpdataToInsert, setTable);
+        console.log("insert",insert)
+        var resultinserdata = await client
+        .query(insert)
+        .then(res => {
+        
+             return res.rowCount
+          })
+        .catch(e => console.error(e.stack))
+       
+        resultdata=bulkData.length - resultinserdata
+        console.log("resultdata",resultdata);
+     
+        result={ 
+            status: "success", 
+            message: `Successfully inserted ${resultinserdata} records. and rejected ${resultdata} records.Total ${bulkData.length} records`,
+            statuscode:200
+        }
+        console.log("result",result);
+        }else{
+           
+            result={ 
+                status: "Failure", 
+                message: `Failed to insert  records.`,
+                statuscode:201
+            }
+            console.log("result",result);
+        }
+     }else{
+        result={ 
+            status: "Failure", 
+            message: `Failed to insert  records.`,
+            statuscode:201
+        }
+        console.log("result",result);
+        }
+
             }
            // console.log(result)
-           if(requestBody.filename == "4" || requestBody.filename == "0" || requestBody.filename == "1" || requestBody.filename == "2"){
+           if(requestBody.filename == "4" || requestBody.filename == "0" || requestBody.filename == "1" || requestBody.filename == "2" || requestBody.filename == "3" || requestBody.filename == "6" ) {
             return h.response(JSON.stringify(result));
            }else{
             if(result){
@@ -604,6 +794,6 @@ export class loginController {
 
     }
  
-    
+  
 
 }
