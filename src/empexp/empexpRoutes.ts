@@ -57,6 +57,16 @@ const empexpRoutes = {
                     tags: ['api']
                 }
             },
+            {
+                method: 'POST',
+                path: '/empexpdetails',
+                handler: controller.expdetails,
+                options: {
+                    tags: ['api']
+                }
+            },
+
+
         ]);
     }
  }
