@@ -247,6 +247,7 @@ export class loginController {
 
             console.log(requestBody.filename);
             var bulkData=requestBody.FileData;
+            var duplicaterecords;
             console.log("requestBody",requestBody.FileData.length)
             // start filter approch
               // Resolve duplicates in bulkData. Can be more complex than this.
@@ -271,7 +272,9 @@ export class loginController {
         console.log("duplicatesArray",duplicatesArray)
         const dataToInsert = uniqueBulkData.filter((item) => !duplicatesArray.includes(item.clientcode));
         console.log("dataToInsert",dataToInsert)
+        duplicaterecords=uniqueBulkData;
         if(dataToInsert && dataToInsert.length > 0){
+        duplicaterecords=uniqueBulkData.filter((item) => duplicatesArray.includes(item.clientcode));
         const columns = Object.keys(bulkData[0]).map((str) => str.trim());
         console.log("columns",columns)
         const setTable = new pgp.helpers.ColumnSet(columns , {table: 'clientdata'});
@@ -292,7 +295,8 @@ export class loginController {
         result={ 
             status: "success", 
             message: `Successfully inserted ${resultinserdata} records. and rejected ${resultdata} records.Total ${bulkData.length} records`,
-            statuscode:200
+            statuscode:200,
+            duplicaterecords:duplicaterecords
         }
         console.log("result",result);
         }else{
@@ -300,7 +304,8 @@ export class loginController {
             result={ 
                 status: "Failure", 
                 message: `Failed to insert  records.`,
-                statuscode:201
+                statuscode:201,
+                duplicaterecords:duplicaterecords
             }
             console.log("result",result);
         }
@@ -320,6 +325,7 @@ export class loginController {
 
        console.log(requestBody.filename);
        var bulkData=requestBody.FileData;
+       var duplicaterecords;
        console.log("requestBody",requestBody.FileData.length)
        // start filter approch
          // Resolve duplicates in bulkData. Can be more complex than this.
@@ -344,7 +350,9 @@ export class loginController {
    console.log("duplicatesArray",duplicatesArray)
    const dataToInsert = bulkData.filter((item) => duplicatesArray.includes(item.employeeid));
    console.log("dataToInsert",dataToInsert)
+   duplicaterecords=inputNationalIds;
    if(dataToInsert && dataToInsert.length > 0){
+    duplicaterecords=bulkData.filter((item) => !duplicatesArray.includes(item.employeeid));
    const columns = Object.keys(bulkData[0]).map((str) => str.trim());
    console.log("columns",columns)
    const setTable = new pgp.helpers.ColumnSet(columns , {table: 'payrollexpense'});
@@ -365,7 +373,8 @@ export class loginController {
    result={ 
        status: "success", 
        message: `Successfully inserted ${resultinserdata} records. and rejected ${resultdata} records.Total ${bulkData.length} records`,
-       statuscode:200
+       statuscode:200,
+       duplicaterecords:duplicaterecords
    }
    console.log("result",result);
    }else{
@@ -373,7 +382,8 @@ export class loginController {
        result={ 
            status: "Failure", 
            message: `Failed to insert  records.`,
-           statuscode:201
+           statuscode:201,
+           duplicaterecords:duplicaterecords
        }
        console.log("result",result);
    }
@@ -393,6 +403,8 @@ export class loginController {
 
            console.log(requestBody.filename);
            var bulkData=requestBody.FileData;
+           console.log("bulkData",bulkData)
+           var duplicaterecords;
            console.log("requestBody",requestBody.FileData.length)
            // start filter approch
              // Resolve duplicates in bulkData. Can be more complex than this.
@@ -432,7 +444,9 @@ export class loginController {
        console.log("employeedataToInsert",employeedataToInsert)
        const clientdataToInsert = employeedataToInsert.filter((item) => clientduplicatesArray.includes(item.clientid));
        console.log("clientdataToInsert",clientdataToInsert)
+       duplicaterecords=employeeidArray;
        if(clientdataToInsert && clientdataToInsert.length > 0){
+        duplicaterecords=employeedataToInsert.filter((item) => clientduplicatesArray.includes(item.clientid,item.employeeid));
        const columns = Object.keys(bulkData[0]).map((str) => str.trim());
        console.log("columns",columns)
        const setTable = new pgp.helpers.ColumnSet(columns , {table: 'timesheet'});
@@ -482,6 +496,7 @@ export class loginController {
                 console.log("employee data")
                 console.log(requestBody.filename);
                 var bulkData=requestBody.FileData;
+                var duplicaterecords;
                 console.log("requestBody",requestBody.FileData.length)
                 // start filter approch
                   // Resolve duplicates in bulkData. Can be more complex than this.
@@ -506,7 +521,9 @@ export class loginController {
             console.log("duplicatesArray",duplicatesArray)
             const dataToInsert = uniqueBulkData.filter((item) => !duplicatesArray.includes(item.employeeid));
             console.log("dataToInsert",dataToInsert)
+            duplicaterecords=uniqueBulkData;
             if(dataToInsert && dataToInsert.length > 0){
+            duplicaterecords = uniqueBulkData.filter((item) => duplicatesArray.includes(item.employeeid));
             const columns = Object.keys(bulkData[0]).map((str) => str.trim());
             console.log("columns",columns)
             const setTable = new pgp.helpers.ColumnSet(columns , {table: 'empdata'});
@@ -527,7 +544,8 @@ export class loginController {
             result={ 
                 status: "success", 
                 message: `Successfully inserted ${resultinserdata} records. and rejected ${resultdata} records.Total ${bulkData.length} records`,
-                statuscode:200
+                statuscode:200,
+                duplicaterecords:duplicaterecords
             }
             console.log("result",result);
             }else{
@@ -535,7 +553,8 @@ export class loginController {
                 result={ 
                     status: "Failure", 
                     message: `Failed to insert  records.`,
-                    statuscode:201
+                    statuscode:201,
+                    duplicaterecords:duplicaterecords
                 }
                 console.log("result",result);
             }
