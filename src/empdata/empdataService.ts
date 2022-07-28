@@ -54,8 +54,9 @@ export class empdataService {
 
         }
 
+    
     }
-
+   
     public async getAll(): Promise<empdata[]> {
 
         try {
