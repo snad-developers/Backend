@@ -1,5 +1,5 @@
 export interface compensation{
-    effectivedate:string;
+    compensationeffectivedate:string;
     payschedule:string;
     paytype:string;
     payrate:string;
@@ -10,7 +10,7 @@ export interface compensation{
     employeeid:number;
 }
 export interface Createcompensation{
-    effectivedate:string;
+    compensationeffectivedate:string;
     payschedule:string;
     paytype:string;
     payrate:string;
@@ -21,7 +21,7 @@ export interface Createcompensation{
     employeeid:number;
 }
 export interface Updatecompensation{
-    effectivedate?:string;
+    compensationeffectivedate?:string;
     payschedule?:string;
     paytype?:string;
     payrate?:string;

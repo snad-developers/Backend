@@ -73,6 +73,8 @@ export class empdataController {
         }
 
     }
+    
+
 
 
     public async update(request: Hapi.Request, h: Hapi.ResponseToolkit) {

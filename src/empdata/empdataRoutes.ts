@@ -33,6 +33,7 @@ const empdataRoutes = {
                     tags: ['api']
                 }
             },
+           
             {
                 method: 'PUT',
                 path: '/empdata/{id}',
