@@ -436,6 +436,8 @@ export class loginController {
        .catch(e => console.error(e.stack))
        console.log("clientlistDuplicates",clientlistDuplicates)
         if((employeelistDuplicates && employeelistDuplicates.length > 0) || (clientlistDuplicates && clientlistDuplicates.length > 0)){
+       const duplicatesArray = employeelistDuplicates.map((item) => {return item.employeeid});
+       console.log("duplicatesArray",duplicatesArray)
        const employeeduplicatesArray = employeelistDuplicates.map((item) => {return item.employeeid});
        console.log("employeeduplicatesArray",employeeduplicatesArray)
        const clientduplicatesArray = clientlistDuplicates.map((item) => {return item.clientcode});
@@ -444,9 +446,16 @@ export class loginController {
        console.log("employeedataToInsert",employeedataToInsert)
        const clientdataToInsert = employeedataToInsert.filter((item) => clientduplicatesArray.includes(item.clientid));
        console.log("clientdataToInsert",clientdataToInsert)
-       duplicaterecords=employeeidArray;
+       const DuplicatesToInsert = clientdataToInsert.filter((item) => !duplicatesArray.includes(item.clientid));
+       console.log("DuplicatesToInsert",DuplicatesToInsert)
+     
+       duplicaterecords=DuplicatesToInsert;
+ 
        if(clientdataToInsert && clientdataToInsert.length > 0){
-        duplicaterecords=employeedataToInsert.filter((item) => clientduplicatesArray.includes(item.clientid,item.employeeid));
+        duplicaterecords=clientdataToInsert.filter((item) => clientduplicatesArray.includes(item.clientid));
+        console.log("duplicaterecords",duplicaterecords)
+        const DuplicatesToInsert = clientdataToInsert.filter((item) => duplicatesArray.includes(item.clientid));
+        console.log("DuplicatesToInsert",DuplicatesToInsert)
        const columns = Object.keys(bulkData[0]).map((str) => str.trim());
        console.log("columns",columns)
        const setTable = new pgp.helpers.ColumnSet(columns , {table: 'timesheet'});
@@ -467,7 +476,9 @@ export class loginController {
        result={ 
            status: "success", 
            message: `Successfully inserted ${resultinserdata} records. and rejected ${resultdata} records.Total ${bulkData.length} records`,
-           statuscode:200
+           statuscode:200,
+           duplicaterecords:duplicaterecords,
+     
        }
        console.log("result",result);
        }else{
@@ -475,7 +486,9 @@ export class loginController {
            result={ 
                status: "Failure", 
                message: `Failed to insert  records.`,
-               statuscode:201
+               statuscode:201,
+               duplicaterecords:duplicaterecords,
+            
            }
            console.log("result",result);
        }
