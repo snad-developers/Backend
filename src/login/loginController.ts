@@ -9,6 +9,7 @@ import { empexpService } from "../empexp/empexpService";
 import { mgmtexpService } from "../mgmtexp/mgmtexpService";
 import { imgexpService } from "../imgexp/imgexpService";
 import { clientdataService } from "../clientdata/clientdataService";
+import { valid } from "@hapi/joi";
 
 const pgp = require('pg-promise')();
 
@@ -52,6 +53,7 @@ export class loginController {
                email:validUser[0].email,
                entity:validUser[0].entity,
                role:validUser[0].role,
+               idnumber:validUser[0].idnumber,
                login:"true"
             }
         

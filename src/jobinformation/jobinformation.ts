@@ -1,5 +1,5 @@
 export interface jobinformation{
-    effectivedate:string;
+    jobeffectivedate:string;
     location:string;
     clientname:string;
     jobtitle:string;
@@ -7,7 +7,7 @@ export interface jobinformation{
     employeeid:number;
 }
 export interface Createjobinformation{
-    effectivedate:string;
+    jobeffectivedate:string;
     location:string;
     clientname:string;
     jobtitle:string;
@@ -15,7 +15,7 @@ export interface Createjobinformation{
     employeeid:number;
 }
 export interface Updatejobinformation{
-    effectivedate?:string;
+    jobeffectivedate?:string;
     location?:string;
     clientname?:string;
     jobtitle?:string;

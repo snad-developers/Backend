@@ -246,7 +246,7 @@ model visainformation{
   employeeid       Int     @db.Integer
 }
 model jobinformation{
-  effectivedate     String  @db.VarChar
+  jobeffectivedate     String  @db.VarChar
   location          String  @db.VarChar
   clientname        String  @db.VarChar
   jobtitle          String  @db.VarChar
@@ -255,7 +255,7 @@ model jobinformation{
   employeeid          Int     @db.Integer
 }
 model compensation{
-  effectivedate        String  @db.VarChar
+  compensationeffectivedate        String  @db.VarChar
   payschedule          String  @db.VarChar
   paytype              String  @db.VarChar
   payrate              String  @db.VarChar

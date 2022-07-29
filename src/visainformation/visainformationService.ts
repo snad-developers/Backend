@@ -70,7 +70,22 @@ export class visainformationService {
         }
 
     }
+    public async getbyID(theDto: createvisainformation): Promise<any> {
 
+        try {
+            return await this.prisma.$queryRaw`select * from visainformation where employeeid = ${theDto.employeeid}`
+           
+
+        } catch (error) {
+            console.log(error);
+
+        } finally {
+            await this.prisma.$disconnect();
+
+
+        }
+
+    }
     public async update(theDto: updatevisainformation, id: number): Promise<visainformation> {
 
         try {

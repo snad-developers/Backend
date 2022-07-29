@@ -17,10 +17,11 @@ const educationRoutes = {
                     tags: ['api']
                 }
             },
+           
             {
-                method: 'GET',
-                path: '/education',
-                handler: controller.getAll,
+                method: 'POST',
+                path: '/geteducation',
+                handler: controller.geteducation,
                 options: {
                     tags: ['api']
                 }
